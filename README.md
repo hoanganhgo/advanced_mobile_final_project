@@ -1,2 +1,4 @@
-# 1712276-Advanced_Mobile-Final_Project
+# Họ và tên: Lương Hoàng Anh.
+# MSSV: 1712276.
+# Advanced Mobile - Final Project.
 E-learning Apps. The Technology Skills Platform.

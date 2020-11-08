@@ -28,6 +28,7 @@ class BrowserSignout extends StatelessWidget {
         child: Column(
           children: [
             Container(
+              height: 120,
               child: Column(
                 children: [
                   Text('Sign in to skill up today',
@@ -53,6 +54,68 @@ class BrowserSignout extends StatelessWidget {
                       }),
                 ],
               ),
+            ),
+            Container(
+              height: 100,
+              child: IconButton(
+                icon: Image.asset('assets/images/new_releases.png'),
+                iconSize: 300,
+                onPressed: () {},
+              ),
+            ),
+            Container(
+              height: 100,
+              child: IconButton(
+                icon: Image.asset('assets/images/recommend.png'),
+                iconSize: 300,
+                onPressed: () {},
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                Container(
+                  height: 100,
+                  width: 155,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/conferences.png'),
+                    iconSize: 300,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 155,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/software.png'),
+                    iconSize: 300,
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 100,
+                  width: 155,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/certifications.png'),
+                    iconSize: 300,
+                    onPressed: () {},
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 155,
+                  child: IconButton(
+                    icon: Image.asset('assets/images/it.png'),
+                    iconSize: 300,
+                    onPressed: () {},
+                  ),
+                ),
+              ],
             ),
           ],
         ),

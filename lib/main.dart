@@ -5,6 +5,7 @@ import 'package:advanced_mobile_final_project/profile/sign_in.dart';
 import 'package:advanced_mobile_final_project/profile/sign_out.dart';
 import 'package:advanced_mobile_final_project/profile/sso.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
+import 'package:advanced_mobile_final_project/share/video.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BrowserSignout(),
+      home: Video(),
     );
   }
 }

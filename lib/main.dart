@@ -1,3 +1,4 @@
+import 'package:advanced_mobile_final_project/browser/browser.dart';
 import 'package:advanced_mobile_final_project/browser/browser_signout.dart';
 import 'package:advanced_mobile_final_project/download/empty_download.dart';
 import 'package:advanced_mobile_final_project/home/home.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: Browser(),
     );
   }
 }

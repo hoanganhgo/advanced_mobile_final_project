@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/browser/browser.dart';
 import 'package:advanced_mobile_final_project/browser/browser_signout.dart';
+import 'package:advanced_mobile_final_project/browser/new_release.dart';
 import 'package:advanced_mobile_final_project/download/empty_download.dart';
 import 'package:advanced_mobile_final_project/home/home.dart';
 import 'package:advanced_mobile_final_project/home/home_empty.dart';
@@ -7,6 +8,7 @@ import 'package:advanced_mobile_final_project/profile/sign_in.dart';
 import 'package:advanced_mobile_final_project/profile/sign_out.dart';
 import 'package:advanced_mobile_final_project/profile/sso.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
+import 'package:advanced_mobile_final_project/share/author_detail.dart';
 import 'package:advanced_mobile_final_project/share/video.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Browser(),
+      home: NewRelease(),
     );
   }
 }

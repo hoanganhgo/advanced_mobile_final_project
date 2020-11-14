@@ -1,3 +1,4 @@
+import 'package:advanced_mobile_final_project/share/author_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,14 @@ class Author extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context) {
           return null;
-        });
+        },
+        onSelected: (value) {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => AuthorDetail()),
+          // );
+        },
+    );
   }
 
 }

@@ -1,9 +1,24 @@
+import 'package:advanced_mobile_final_project/browser/new_release.dart';
+import 'package:advanced_mobile_final_project/download/empty_download.dart';
+import 'package:advanced_mobile_final_project/home/home.dart';
+import 'package:advanced_mobile_final_project/search/search.dart';
 import 'package:advanced_mobile_final_project/share/author.dart';
 import 'package:advanced_mobile_final_project/share/path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Browser extends StatelessWidget {
+class Browser extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _BrowserState();
+  }
+}
+
+class _BrowserState extends State<StatefulWidget> {
+  var tabs = [Home(), EmptyDownload(), Browser(), Search()];
+  var index = 2;
+  var redirect = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +39,45 @@ class Browser extends StatelessWidget {
               })
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: this.index, // this will be set when a new tab is tapped
+        onTap: (int index) {
+          setState(() {
+            if (this.index != index) {
+              this.index = index;
+              this.redirect = true;
+            }
+          }
+          );
+          if (this.redirect) {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => tabs[this.index]),
+            );
+          }
+          //_navigateToScreens(index);
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.file_download),
+            title: new Text('Downloads'),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.apps),
+              title: Text('Browser')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: Text('Search')
+          ),
+        ],
+      ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
@@ -32,7 +86,12 @@ class Browser extends StatelessWidget {
             child: IconButton(
               icon: Image.asset('assets/images/new_releases.png'),
               iconSize: 300,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewRelease()),
+                );
+              },
             ),
           ),
           Container(
@@ -230,5 +289,4 @@ class Browser extends StatelessWidget {
       ),
     );
   }
-
 }

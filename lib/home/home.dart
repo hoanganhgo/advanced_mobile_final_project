@@ -1,4 +1,6 @@
 import 'package:advanced_mobile_final_project/browser/browser.dart';
+import 'package:advanced_mobile_final_project/download/empty_download.dart';
+import 'package:advanced_mobile_final_project/search/search.dart';
 import 'package:advanced_mobile_final_project/share/video.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +10,18 @@ class Home extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _HomeState();
   }
-
 }
 
 class _HomeState extends State<Home> {
+  var tabs = [Home(), EmptyDownload(), Browser(), Search()];
   var index = 0;
+  var redirect = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(this.index.toString()),
+          title: Text('Home'),
           actions: [
             PopupMenuButton(
                 icon: CircleAvatar(
@@ -37,17 +40,22 @@ class _HomeState extends State<Home> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: 0, // this will be set when a new tab is tapped
+          currentIndex: this.index, // this will be set when a new tab is tapped
           onTap: (int index) {
             setState(() {
-              this.index = index;
+              if (this.index != index) {
+                this.index = index;
+                this.redirect = true;
+              }
             }
             );
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Browser()),
-            );
+            if (this.redirect) {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => tabs[this.index]),
+              );
+            }
             //_navigateToScreens(index);
           },
           items: [

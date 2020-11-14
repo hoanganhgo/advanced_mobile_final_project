@@ -10,6 +10,7 @@ import 'package:advanced_mobile_final_project/profile/sso.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
 import 'package:advanced_mobile_final_project/share/author_detail.dart';
 import 'package:advanced_mobile_final_project/share/video.dart';
+import 'package:advanced_mobile_final_project/share/video_course.dart';
 import 'package:flutter/material.dart';
 
 void main() {

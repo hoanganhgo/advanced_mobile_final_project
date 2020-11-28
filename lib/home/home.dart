@@ -1,7 +1,6 @@
-import 'package:advanced_mobile_final_project/browser/browser.dart';
-import 'package:advanced_mobile_final_project/download/empty_download.dart';
-import 'package:advanced_mobile_final_project/search/search.dart';
-import 'package:advanced_mobile_final_project/share/video.dart';
+import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/share/course/course.dart';
+import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,273 +12,101 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var tabs = [Home(), EmptyDownload(), Browser(), Search()];
-  var index = 0;
-  var redirect = false;
+
+  var courses = [
+    new CourseModel(imageLink: 'assets/images/csharp.jpg', courseName: 'Java dev',
+        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
+        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
+        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
+        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+  ];
+
+  List<Widget> getListCourses() {
+    List<Widget> result = new List<Container>();
+    for (int i = 0; i < this.courses.length; i++) {
+      result.add(
+        Container(
+          margin: EdgeInsets.all(Constant.insetCourse),
+          child: RaisedButton(
+            onPressed: () {
+              print('press: ' + i.toString());
+            },
+            color: Constant.bgColorCourse,
+            child: Course(this.courses[i]),
+          ),
+        )
+      );
+    }
+    return result;
+  }
+
+  Row headerCourse(String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title,
+          style: TextStyle(
+            fontSize: Constant.titleCourseSize,
+            fontWeight: Constant.titleCourseWeight,
+          ),
+        ),
+        InkWell(
+          child: Text(
+            'See all >',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: Constant.seeAllSize,
+            ),
+          ),
+          onTap: () {
+
+          },
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-          actions: [
-            PopupMenuButton(
-                icon: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg'),
-                ),
-                itemBuilder: (BuildContext context) {
-                  return null;
-                }),
-            IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () {
-
-                })
-          ],
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children: [
+        this.headerCourse('Software Development'),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 20.0),
+          height: Constant.heightListCourse,
+          child: ListView(
+            // This next line does the trick.
+            scrollDirection: Axis.horizontal,
+            children: this.getListCourses()
+          ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: this.index, // this will be set when a new tab is tapped
-          onTap: (int index) {
-            setState(() {
-              if (this.index != index) {
-                this.index = index;
-                this.redirect = true;
-              }
-            }
-            );
-            if (this.redirect) {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => tabs[this.index]),
-              );
-            }
-            //_navigateToScreens(index);
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.file_download),
-              title: new Text('Downloads'),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.apps),
-                title: Text('Browser')
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                title: Text('Search')
-            ),
-          ],
+        Divider(),
+        this.headerCourse('IT Operations'),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 20.0),
+          height: Constant.heightListCourse,
+          child: ListView(
+            // This next line does the trick.
+              scrollDirection: Axis.horizontal,
+              children: this.getListCourses()
+          ),
         ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Software Development',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                InkWell(
-                  child: Text(
-                    'See all >',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 18,
-                    ),
-                  ),
-                  onTap: () {
-
-                  },
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: 260,
-              child: ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('IT Operations',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                InkWell(
-                  child: Text(
-                    'See all >',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 18,
-                    ),
-                  ),
-                  onTap: () {
-
-                  },
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: 260,
-              child: ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Data Professional',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                InkWell(
-                  child: Text(
-                    'See all >',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 18,
-                    ),
-                  ),
-                  onTap: () {
-
-                  },
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: 260,
-              child: ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                  Container(
-                    width: 180.0,
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
-                    ),
-                    child: Video(),
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-          ],
-        )
+        Divider(),
+        this.headerCourse('Data Professional'),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 20.0),
+          height: Constant.heightListCourse,
+          child: ListView(
+            // This next line does the trick.
+              scrollDirection: Axis.horizontal,
+              children: this.getListCourses()
+          ),
+        ),
+      ],
     );
   }
 }

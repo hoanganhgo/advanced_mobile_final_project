@@ -1,3 +1,4 @@
+import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -5,23 +6,7 @@ class EmptyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        actions: [
-          PopupMenuButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage('https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg'),
-              ),
-              itemBuilder: (BuildContext context) {
-                return null;
-              }),
-          IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {
-
-              })
-        ],
-      ),
+      appBar: AppBarCustom(name: 'Home'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

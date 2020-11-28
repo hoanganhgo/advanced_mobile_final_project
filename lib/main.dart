@@ -1,23 +1,24 @@
-import 'package:advanced_mobile_final_project/browser/browser.dart';
-import 'package:advanced_mobile_final_project/browser/browser_signout.dart';
-import 'package:advanced_mobile_final_project/browser/new_release.dart';
-import 'package:advanced_mobile_final_project/download/empty_download.dart';
 import 'package:advanced_mobile_final_project/home/home.dart';
-import 'package:advanced_mobile_final_project/home/home_empty.dart';
-import 'package:advanced_mobile_final_project/profile/sign_in.dart';
-import 'package:advanced_mobile_final_project/profile/sign_out.dart';
-import 'package:advanced_mobile_final_project/profile/sso.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
-import 'package:advanced_mobile_final_project/share/author_detail.dart';
-import 'package:advanced_mobile_final_project/share/video.dart';
-import 'package:advanced_mobile_final_project/share/video_course.dart';
+import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
+import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/search/search_bar.dart';
 import 'package:flutter/material.dart';
+
+import 'browser/browser.dart';
+import 'download/empty_download.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,54 +27,57 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: Main(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class Main extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MainState createState() => _MainState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _MainState extends State<Main> {
+  var tabs = [Home(), EmptyDownload(), Browser(), Search()];
+  var tabNames = ['Home', 'Download', 'Browser', 'Search'];
+  var index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index]) : SearchBar(name: this.tabNames[this.index]),
+      body: tabs[this.index],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: this.index, // this will be set when a new tab is tapped
+        onTap: (int index) {
+          setState(() {
+            if (this.index != index) {
+              this.index = index;
+            }
+          }
+          );
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.file_download),
+            title: new Text('Downloads'),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.apps),
+              title: Text('Browser')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: Text('Search')
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+

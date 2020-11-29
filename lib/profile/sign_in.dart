@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -15,14 +15,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-
-            }),
-        title: Text('Sign In'),
-      ),
+      appBar: AppBarCustom(name: 'Sign In'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,49 +24,60 @@ class _SignInState extends State<SignIn> {
               color: Colors.white70,
               width: this.WIDTH,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Username (or Email)',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: 18,
                     ),
                   ),
-                  TextField(
-                    style: TextStyle(
-                      fontSize: 16,
+                  Container(
+                    color: Colors.black12,
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   )
                 ],
               ),
             ),
+            SizedBox(height: 20),
             Container(
               color: Colors.white70,
               width: this.WIDTH,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Username (or Email)',
+                    'Password',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: 18,
                     ),
                   ),
-                  TextField(
-                    style: TextStyle(
-                      fontSize: 16,
+                  Container(
+                    color: Colors.black12,
+                    child: TextField(
+                      obscureText: true,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   )
                 ],
               ),
             ),
+            SizedBox(height: 30),
             Container(
               width: this.WIDTH,
               child: RaisedButton(
                 onPressed: () {
 
                 },
-                color: Colors.blue,
+                color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
                   'SIGN IN',
@@ -90,7 +94,7 @@ class _SignInState extends State<SignIn> {
                 onPressed: () {
 
                 },
-                color: Colors.blue,
+                color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
                   'USE SINGLE SIGN-ON (SSO)',
@@ -98,9 +102,6 @@ class _SignInState extends State<SignIn> {
                       fontSize: 16,
                       fontWeight: FontWeight.w500
                   ),
-                ),
-                shape: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 2.0)
                 ),
               ),
             ),
@@ -110,7 +111,7 @@ class _SignInState extends State<SignIn> {
                 onPressed: () {
 
                 },
-                color: Colors.blue,
+                color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
                   'SIGN UP FREE',

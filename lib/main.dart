@@ -1,7 +1,11 @@
 import 'package:advanced_mobile_final_project/home/home.dart';
+import 'package:advanced_mobile_final_project/profile/sign_in.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
+import 'package:advanced_mobile_final_project/search/search_bar.dart';
+import 'package:advanced_mobile_final_project/share/author/author_detail.dart';
+import 'package:advanced_mobile_final_project/share/course/video_course.dart';
 import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/search/search_bar.dart';
+import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'browser/browser.dart';
@@ -28,6 +32,11 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Main(),
+      routes: {
+        '/author-detail': (context) => AuthorDetail(),
+        '/video-course': (context) => VideoCourse(),
+        '/login': (context) => SignIn(),
+      },
     );
   }
 }
@@ -47,8 +56,10 @@ class _MainState extends State<Main> {
     return Scaffold(
       appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index]) : SearchBar(name: this.tabNames[this.index]),
       body: tabs[this.index],
+      backgroundColor: Colors.grey.shade200,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Constant.primaryColor,
         currentIndex: this.index, // this will be set when a new tab is tapped
         onTap: (int index) {
           setState(() {

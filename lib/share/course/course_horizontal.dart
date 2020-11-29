@@ -23,14 +23,14 @@ class CourseHorizontal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 200,
+              width: MediaQuery.of(context).size.width - 125,
               child: Text(this.model.courseName,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 softWrap: true,
                 style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black
                 ),
               ),
@@ -53,9 +53,9 @@ class CourseHorizontal extends StatelessWidget {
                   ),
                 ),
                 Text(' - '),
-                Text(model.dateTime.day.toString() + '/'
-                    + model.dateTime.month.toString() +
-                    '/' + model.dateTime.year.toString(),
+                Text(model.date.day.toString() + '/'
+                    + model.date.month.toString() +
+                    '/' + model.date.year.toString(),
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: Constant.courseTextWeight,
@@ -63,8 +63,8 @@ class CourseHorizontal extends StatelessWidget {
                   ),
                 ),
                 Text(' - '),
-                Text(model.dateTime.hour.toString() + 'h'
-                    + model.dateTime.minute.toString(),
+                Text(model.date.hour.toString() + 'h'
+                    + model.date.minute.toString(),
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: Constant.courseTextWeight,
@@ -109,16 +109,16 @@ class CourseHorizontal extends StatelessWidget {
 
   static List<Widget> getListCourses(List<CourseModel> courses) {
     List<Widget> result = new List<Container>();
-    for (int i = 0; i < courses.length; i++) {
+    for (CourseModel course in courses) {
       result.add(
           Container(
             margin: EdgeInsets.all(Constant.insetCourse),
             child: RaisedButton(
               onPressed: () {
-                print('press: ' + i.toString());
+
               },
               color: Constant.bgColorCourse,
-              child: CourseHorizontal(courses[i]),
+              child: CourseHorizontal(course),
             ),
           )
       );

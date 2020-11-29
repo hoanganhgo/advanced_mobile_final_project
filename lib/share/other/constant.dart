@@ -12,7 +12,7 @@ class Constant {
 
   //Color
   static final bgColorCourse = Colors.grey.shade100;
-  static final primaryColor = Colors.blue;
+  static final primaryColor = Colors.black87;
   static final buttonPrimaryColor = Colors.blue.shade300;
 
 }

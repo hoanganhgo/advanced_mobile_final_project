@@ -54,6 +54,7 @@ class SearchService extends SearchDelegate {
           ),
           onTap: () {
             selectedResult = suggestionsList[index];
+            query = selectedResult;
             showResults(context);
           },
         );

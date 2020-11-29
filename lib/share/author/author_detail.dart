@@ -1,37 +1,26 @@
+import 'package:advanced_mobile_final_project/model/author_model.dart';
+import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AuthorDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthorModel model = ModalRoute.of(context).settings.arguments;
+    print(model.name);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Author'),
-        actions: [
-          PopupMenuButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage('https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg'),
-              ),
-              itemBuilder: (BuildContext context) {
-                return null;
-              }),
-          IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {
-
-              })
-        ],
-      ),
+      appBar: AppBarCustom(name: 'Author'),
       body: Center(
         child: Column(
           children: [
             CircleAvatar(
               radius: 100,
-              backgroundImage: NetworkImage('https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg'),
+              backgroundImage: AssetImage(model.imageLink),
             ),
-            Text('Miko Jeson',
+            SizedBox(height: 5),
+            Text(model.name,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),),
             Container(

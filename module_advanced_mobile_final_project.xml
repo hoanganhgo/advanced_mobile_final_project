@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_advanced_mobile_final_project" default="compile.module.advanced_mobile_final_project">
+  <dirname property="module.advanced_mobile_final_project.basedir" file="${ant.file.module_advanced_mobile_final_project}"/>
+  
+  <property name="module.jdk.home.advanced_mobile_final_project" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.advanced_mobile_final_project" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.advanced_mobile_final_project" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.advanced_mobile_final_project" value="-encoding UTF-8 -source 13 -target 13 ${compiler.args}"/>
+  
+  <property name="advanced_mobile_final_project.output.dir" value="${module.advanced_mobile_final_project.basedir}/out/production/advanced_mobile_final_project"/>
+  <property name="advanced_mobile_final_project.testoutput.dir" value="${module.advanced_mobile_final_project.basedir}/out/test/advanced_mobile_final_project"/>
+  
+  <path id="advanced_mobile_final_project.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="advanced_mobile_final_project.module.production.classpath">
+    <path refid="${module.jdk.classpath.advanced_mobile_final_project}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="advanced_mobile_final_project.runtime.production.module.classpath">
+    <pathelement location="${advanced_mobile_final_project.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="advanced_mobile_final_project.module.classpath">
+    <path refid="${module.jdk.classpath.advanced_mobile_final_project}"/>
+    <pathelement location="${advanced_mobile_final_project.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="advanced_mobile_final_project.runtime.module.classpath">
+    <pathelement location="${advanced_mobile_final_project.testoutput.dir}"/>
+    <pathelement location="${advanced_mobile_final_project.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.advanced_mobile_final_project">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.advanced_mobile_final_project">
+    <patternset refid="excluded.from.module.advanced_mobile_final_project"/>
+  </patternset>
+  
+  <path id="advanced_mobile_final_project.module.sourcepath">
+    <dirset dir="${module.advanced_mobile_final_project.basedir}">
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.advanced_mobile_final_project" depends="compile.module.advanced_mobile_final_project.production,compile.module.advanced_mobile_final_project.tests" description="Compile module advanced_mobile_final_project"/>
+  
+  <target name="compile.module.advanced_mobile_final_project.production" depends="register.custom.compilers" description="Compile module advanced_mobile_final_project; production classes">
+    <mkdir dir="${advanced_mobile_final_project.output.dir}"/>
+    <javac2 destdir="${advanced_mobile_final_project.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.advanced_mobile_final_project}/javac">
+      <compilerarg line="${compiler.args.advanced_mobile_final_project}"/>
+      <bootclasspath refid="advanced_mobile_final_project.module.bootclasspath"/>
+      <classpath refid="advanced_mobile_final_project.module.production.classpath"/>
+      <src refid="advanced_mobile_final_project.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.advanced_mobile_final_project"/>
+    </javac2>
+    
+    <copy todir="${advanced_mobile_final_project.output.dir}">
+      <fileset dir="${module.advanced_mobile_final_project.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.advanced_mobile_final_project.tests" depends="register.custom.compilers,compile.module.advanced_mobile_final_project.production" description="compile module advanced_mobile_final_project; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.advanced_mobile_final_project" description="cleanup module">
+    <delete dir="${advanced_mobile_final_project.output.dir}"/>
+    <delete dir="${advanced_mobile_final_project.testoutput.dir}"/>
+  </target>
+</project>

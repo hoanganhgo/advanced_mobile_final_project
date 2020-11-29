@@ -1,7 +1,8 @@
-import 'package:advanced_mobile_final_project/browser/new_release.dart';
+import 'package:advanced_mobile_final_project/model/author_model.dart';
+import 'package:advanced_mobile_final_project/model/category_model.dart';
 import 'package:advanced_mobile_final_project/share/author/author.dart';
+import 'package:advanced_mobile_final_project/share/other/category.dart';
 import 'package:advanced_mobile_final_project/share/other/constant.dart';
-import 'package:advanced_mobile_final_project/share/other/path.dart';
 import 'package:advanced_mobile_final_project/widget/my_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,198 +15,60 @@ class Browser extends StatefulWidget {
 }
 
 class _BrowserState extends State<StatefulWidget> {
+  List<AuthorModel> authors = [
+    new AuthorModel(name: 'John', imageLink: 'assets/images/avatar.jpg'),
+    new AuthorModel(name: 'Peter', imageLink: 'assets/images/avatar.jpg'),
+    new AuthorModel(name: 'Jessica', imageLink: 'assets/images/avatar.jpg'),
+    new AuthorModel(name: 'Lina', imageLink: 'assets/images/avatar.jpg'),
+  ];
+
+  List<CategoryModel> categories = [
+    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
+    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
+    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
+    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        MyLargeButton(icon: Icons.new_releases, text: 'TOP NEW COURSE', color: Constant.buttonPrimaryColor),
-        MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.green.shade400),
-        MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.red.shade400),
-        Divider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 100,
-              width: 155,
-              child: IconButton(
-                icon: Image.asset('assets/images/conferences.png'),
-                iconSize: 300,
-                onPressed: () {},
-              ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MyLargeButton(icon: Icons.new_releases, text: 'TOP NEW COURSE', color: Colors.black87),
+          MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87),
+          MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87),
+          Divider(),
+          Text('Category',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),),
+          SizedBox(height: 5),
+          Container(
+            height: 130,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: Category.getAllCategories(this.categories)
             ),
-            Container(
-              height: 100,
-              width: 155,
-              child: IconButton(
-                icon: Image.asset('assets/images/software.png'),
-                iconSize: 300,
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 100,
-              width: 155,
-              child: IconButton(
-                icon: Image.asset('assets/images/certifications.png'),
-                iconSize: 300,
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              height: 100,
-              width: 155,
-              child: IconButton(
-                icon: Image.asset('assets/images/it.png'),
-                iconSize: 300,
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
-        Divider(),
-        Text('Popular Skills',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),),
-        Container(
-          height: 30,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  child: Text('Angular'),
-                  color: Colors.blue,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  child: Text('C#'),
-                  color: Colors.blue,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  child: Text('JavaScript'),
-                  color: Colors.blue,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  child: Text('Java'),
-                  color: Colors.blue,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  child: Text('Python'),
-                  color: Colors.blue,
-                ),
-              ),
-            ],
           ),
-        ),
-        Divider(),
-        Text('Paths',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),),
-        Container(
-          height: 180,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Container(
-                margin: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent)
-                ),
-                child: Path(),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent)
-                ),
-                child: Path(),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent)
-                ),
-                child: Path(),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent)
-                ),
-                child: Path(),
-              ),
-            ],
-          ),
-        ),
-        Divider(),
-        Text('Top Authors',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),),
-        Container(
-          height: 100,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Container(
-                width: 100,
-                child: Author(),
-              ),
-              Container(
-                width: 100,
-                child: Author(),
-              ),
-              Container(
-                width: 100,
-                child: Author(),
-              ),
-              Container(
-                width: 100,
-                child: Author(),
-              ),
-            ],
-          ),
-        )
-      ],
+          Divider(),
+          Text('Top Authors',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),),
+          SizedBox(height: 5),
+          Container(
+            height: 100,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: Author.getAllAuthors(this.authors),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

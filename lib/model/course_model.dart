@@ -3,10 +3,11 @@ class CourseModel {
   String courseName;
   String authorName;
   String level;
-  DateTime dateTime;
+  DateTime date;
+  int totalHours = 365;
   double stars;
   int rates;
 
   CourseModel({this.imageLink, this.courseName, this.authorName, this.level,
-    this.dateTime, this.stars, this.rates});
+    this.date, this.stars, this.rates});
 }

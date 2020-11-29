@@ -13,35 +13,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  var courses = [
+  List<CourseModel> courses = [
     new CourseModel(imageLink: 'assets/images/csharp.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
     new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
     new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
     new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', dateTime: new DateTime.now(), stars: 4, rates: 1000),
+        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
   ];
-
-  List<Widget> getListCourses() {
-    List<Widget> result = new List<Container>();
-    for (int i = 0; i < this.courses.length; i++) {
-      result.add(
-        Container(
-          margin: EdgeInsets.all(Constant.insetCourse),
-          child: RaisedButton(
-            onPressed: () {
-              print('press: ' + i.toString());
-            },
-            color: Constant.bgColorCourse,
-            child: Course(this.courses[i]),
-          ),
-        )
-      );
-    }
-    return result;
-  }
 
   Row headerCourse(String title) {
     return Row(
@@ -81,7 +62,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
             scrollDirection: Axis.horizontal,
-            children: this.getListCourses()
+            children: Course.getListCourses(this.courses, context)
           ),
         ),
         Divider(),
@@ -92,7 +73,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
               scrollDirection: Axis.horizontal,
-              children: this.getListCourses()
+              children: Course.getListCourses(this.courses, context)
           ),
         ),
         Divider(),
@@ -103,7 +84,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
               scrollDirection: Axis.horizontal,
-              children: this.getListCourses()
+              children: Course.getListCourses(this.courses, context)
           ),
         ),
       ],

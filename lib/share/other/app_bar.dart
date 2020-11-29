@@ -1,3 +1,4 @@
+import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter/material.dart';
 
 class AppBarCustom extends PreferredSize {
@@ -13,14 +14,18 @@ class AppBarCustom extends PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(this.name),
+      backgroundColor: Constant.primaryColor,
       actions: [
-        PopupMenuButton(
-            icon: CircleAvatar(
+        FlatButton(
+            child: CircleAvatar(
               backgroundImage: AssetImage('assets/images/avatar.jpg'),
             ),
-            itemBuilder: (BuildContext context) {
-              return null;
-            }),
+            onPressed: () {
+              if (this.name != 'Sign In') {
+                Navigator.pushNamed(context, '/login');
+              }
+            },
+        ),
         IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: () {

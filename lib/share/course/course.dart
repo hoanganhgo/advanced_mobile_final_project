@@ -25,7 +25,7 @@ class Course extends StatelessWidget {
             softWrap: true,
             style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
                 color: Colors.black
             ),
           ),
@@ -48,9 +48,9 @@ class Course extends StatelessWidget {
               ),
             ),
             Text(' - '),
-            Text(model.dateTime.day.toString() + '/'
-                + model.dateTime.month.toString() +
-                '/' + model.dateTime.year.toString(),
+            Text(model.date.day.toString() + '/'
+                + model.date.month.toString() +
+                '/' + model.date.year.toString(),
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,
@@ -58,8 +58,8 @@ class Course extends StatelessWidget {
               ),
             ),
             Text(' - '),
-            Text(model.dateTime.hour.toString() + 'h'
-              + model.dateTime.minute.toString(),
+            Text((model.totalHours/60).round().toString() + 'h'
+              + (model.totalHours%60).round().toString(),
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,
@@ -98,6 +98,25 @@ class Course extends StatelessWidget {
         )
       ],
     );
+  }
+
+  static List<Widget> getListCourses(List<CourseModel> courses, BuildContext context) {
+    List<Widget> result = new List<Container>();
+    for (CourseModel course in courses) {
+      result.add(
+          Container(
+            margin: EdgeInsets.all(Constant.insetCourse),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/video-course');
+              },
+              color: Constant.bgColorCourse,
+              child: Course(course),
+            ),
+          )
+      );
+    }
+    return result;
   }
 
 }

@@ -107,7 +107,7 @@ class CourseHorizontal extends StatelessWidget {
     );
   }
 
-  static List<Widget> getListCourses(List<CourseModel> courses) {
+  static List<Widget> getListCourses(List<CourseModel> courses, BuildContext context) {
     List<Widget> result = new List<Container>();
     for (CourseModel course in courses) {
       result.add(
@@ -115,7 +115,7 @@ class CourseHorizontal extends StatelessWidget {
             margin: EdgeInsets.all(Constant.insetCourse),
             child: RaisedButton(
               onPressed: () {
-
+                Navigator.pushNamed(context, '/video-course', arguments: course);
               },
               color: Constant.bgColorCourse,
               child: CourseHorizontal(course),

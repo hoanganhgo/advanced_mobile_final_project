@@ -1,12 +1,15 @@
 import 'package:advanced_mobile_final_project/home/home.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/profile/sign_in.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
 import 'package:advanced_mobile_final_project/search/search_bar.dart';
 import 'package:advanced_mobile_final_project/share/author/author_detail.dart';
-import 'package:advanced_mobile_final_project/share/course/video_course.dart';
+import 'package:advanced_mobile_final_project/share/course/course_detail.dart';
+import 'package:advanced_mobile_final_project/share/course/list_course.dart';
 import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
 import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'browser/browser.dart';
 import 'download/empty_download.dart';
@@ -25,19 +28,38 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'E-Learning',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<StoreModel>(create: (context) => StoreModel()),
+      ],
+      child: MaterialApp(
+        title: 'E-Learning',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Main(),
+        routes: {
+          '/author-detail': (context) => AuthorDetail(),
+          '/video-course': (context) => CourseDetail(),
+          '/login': (context) => SignIn(),
+          '/list-course': (context) => ListCourse(),
+        },
       ),
-      home: Main(),
-      routes: {
-        '/author-detail': (context) => AuthorDetail(),
-        '/video-course': (context) => VideoCourse(),
-        '/login': (context) => SignIn(),
-      },
     );
+    // return MaterialApp(
+    //   title: 'E-Learning',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //     visualDensity: VisualDensity.adaptivePlatformDensity,
+    //   ),
+    //   home: Main(),
+    //   routes: {
+    //     '/author-detail': (context) => AuthorDetail(),
+    //     '/video-course': (context) => CourseDetail(),
+    //     '/login': (context) => SignIn(),
+    //   },
+    // );
   }
 }
 
@@ -47,7 +69,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  var tabs = [Home(), EmptyDownload(), Browser(), Search()];
+  var tabs = [Home(), EmptyDownload(), Browser(), Search(searchContent: '0')];
   var tabNames = ['Home', 'Download', 'Browser', 'Search'];
   var index = 0;
 

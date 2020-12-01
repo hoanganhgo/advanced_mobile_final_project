@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_rating_bar: ^3.2.0+1
+  provider: ^4.3.2+2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -47,10 +48,31 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/java.jpg
-    - assets/images/csharp.jpg
     - assets/images/avatar.jpg
     - assets/images/video.jpg
+    - assets/images/e-learning.webp
+    - assets/images/course/java.jpg
+    - assets/images/course/csharp.jpg
+    - assets/images/course/cplusplus.jpg
+    - assets/images/course/flutter.png
+    - assets/images/course/javascript.png
+    - assets/images/course/python.jpg
+    - assets/images/course/react.jpg
+    - assets/images/course/ai.jpg
+    - assets/images/course/android.jpg
+    - assets/images/course/data_science.png
+    - assets/images/course/ios.png
+    - assets/images/course/nodejs.png
+    - assets/images/avatar/anonymous.jpg
+    - assets/images/avatar/bill_gate.jpg
+    - assets/images/avatar/buffett.jpg
+    - assets/images/avatar/einstein.jpg
+    - assets/images/avatar/elon_musk.jpg
+    - assets/images/avatar/jackma.jpg
+    - assets/images/avatar/mark_zuckerberg.jpg
+    - assets/images/avatar/messi.jpg
+    - assets/images/avatar/ronaldo.jpg
+    - assets/images/avatar/trump.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

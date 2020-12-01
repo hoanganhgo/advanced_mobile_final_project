@@ -1,6 +1,8 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/share/course/course.dart';
 import 'package:advanced_mobile_final_project/share/other/constant.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,18 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  List<CourseModel> courses = [
-    new CourseModel(imageLink: 'assets/images/csharp.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
-    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
-    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
-    new CourseModel(imageLink: 'assets/images/java.jpg', courseName: 'Java dev',
-        authorName: 'John', level: 'beginner', date: new DateTime.now(), stars: 4, rates: 1000),
-  ];
-
   Row headerCourse(String title) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,6 +42,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
+
     return ListView(
       scrollDirection: Axis.vertical,
       children: [
@@ -62,7 +54,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
             scrollDirection: Axis.horizontal,
-            children: Course.getListCourses(this.courses, context)
+            children: Course.getListCourses(store.getAllCourses(), context)
           ),
         ),
         Divider(),
@@ -73,7 +65,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
               scrollDirection: Axis.horizontal,
-              children: Course.getListCourses(this.courses, context)
+              children: Course.getListCourses(store.getAllCourses(type: 1), context)
           ),
         ),
         Divider(),
@@ -84,7 +76,7 @@ class _HomeState extends State<Home> {
           child: ListView(
             // This next line does the trick.
               scrollDirection: Axis.horizontal,
-              children: Course.getListCourses(this.courses, context)
+              children: Course.getListCourses(store.getAllCourses(type: 2), context)
           ),
         ),
       ],

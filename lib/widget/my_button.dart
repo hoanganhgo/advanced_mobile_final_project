@@ -14,9 +14,7 @@ class MyLargeButton extends StatelessWidget {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
       child: RaisedButton.icon(
-        onPressed: () {
-
-        },
+        onPressed: this.event,
         icon: Icon(this.icon),
         label: Text(this.text,
           style: TextStyle(

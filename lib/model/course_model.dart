@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class CourseModel {
   String imageLink;
   String courseName;

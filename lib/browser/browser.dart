@@ -1,9 +1,10 @@
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/category_model.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/share/author/author.dart';
 import 'package:advanced_mobile_final_project/share/other/category.dart';
-import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:advanced_mobile_final_project/widget/my_button.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,30 +16,35 @@ class Browser extends StatefulWidget {
 }
 
 class _BrowserState extends State<StatefulWidget> {
-  List<AuthorModel> authors = [
-    new AuthorModel(name: 'John', imageLink: 'assets/images/avatar.jpg'),
-    new AuthorModel(name: 'Peter', imageLink: 'assets/images/avatar.jpg'),
-    new AuthorModel(name: 'Jessica', imageLink: 'assets/images/avatar.jpg'),
-    new AuthorModel(name: 'Lina', imageLink: 'assets/images/avatar.jpg'),
-  ];
-
-  List<CategoryModel> categories = [
-    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
-    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
-    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
-    new CategoryModel(name: 'Software', imageLink: 'assets/images/csharp.jpg'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
     return Container(
       margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyLargeButton(icon: Icons.new_releases, text: 'TOP NEW COURSE', color: Colors.black87),
-          MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87),
-          MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87),
+          MyLargeButton(icon: Icons.new_releases, text: 'TOP NEW COURSE', color: Colors.black87,
+            event: () {
+              Navigator.pushNamed(context, '/list-course', arguments: {
+                'name': 'Top New Course',
+                'data': store.getAllCourses(type: 1)
+              });
+            }),
+          MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87,
+              event: () {
+                Navigator.pushNamed(context, '/list-course', arguments: {
+                  'name': 'Top Sell',
+                  'data': store.getAllCourses(type: 2)
+                });
+              }),
+          MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87,
+              event: () {
+                Navigator.pushNamed(context, '/list-course', arguments: {
+                  'name': 'Top Rating',
+                  'data': store.getAllCourses(type: 3)
+                });
+              }),
           Divider(),
           Text('Category',
             style: TextStyle(
@@ -50,7 +56,7 @@ class _BrowserState extends State<StatefulWidget> {
             height: 130,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: Category.getAllCategories(this.categories)
+              children: Category.getAllCategories(store.getAllCategories())
             ),
           ),
           Divider(),
@@ -64,7 +70,7 @@ class _BrowserState extends State<StatefulWidget> {
             height: 100,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: Author.getAllAuthors(this.authors),
+              children: Author.getAllAuthors(store.getAllAuthors()),
             ),
           )
         ],

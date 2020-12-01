@@ -1,5 +1,7 @@
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EmptyDownload extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class EmptyDownload extends StatefulWidget {
 class _EmptyDownloadState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
     return Center(
       child: Column(
         children: [
@@ -40,12 +43,15 @@ class _EmptyDownloadState extends State<StatefulWidget> {
                     color: Colors.white
                 ),
               ),
-              color: Colors.blue,
+              color: Colors.black87,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6.0),
               ),
               onPressed: () {
-
+                Navigator.pushNamed(context, '/list-course', arguments: {
+                  'name': 'Recommend',
+                  'data': store.getAllCourses(type: 0)
+                });
               }),
         ],
       ),

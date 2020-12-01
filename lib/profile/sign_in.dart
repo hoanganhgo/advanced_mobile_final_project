@@ -18,8 +18,11 @@ class _SignInState extends State<SignIn> {
       appBar: AppBarCustom(name: 'Sign In'),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Image(
+              image: AssetImage('assets/images/e-learning.webp')
+            ),
             Container(
               color: Colors.white70,
               width: this.WIDTH,

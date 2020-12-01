@@ -108,7 +108,7 @@ class Course extends StatelessWidget {
             margin: EdgeInsets.all(Constant.insetCourse),
             child: RaisedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/video-course');
+                Navigator.pushNamed(context, '/video-course', arguments: course);
               },
               color: Constant.bgColorCourse,
               child: Course(course),

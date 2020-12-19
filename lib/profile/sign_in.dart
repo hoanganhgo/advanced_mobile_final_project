@@ -112,7 +112,7 @@ class _SignInState extends State<SignIn> {
               width: this.WIDTH,
               child: RaisedButton(
                 onPressed: () {
-
+                  Navigator.pushNamed(context, '/sign-up');
                 },
                 color: Colors.black87,
                 textColor: Colors.white,

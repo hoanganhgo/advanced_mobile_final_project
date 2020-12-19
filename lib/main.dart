@@ -1,6 +1,7 @@
 import 'package:advanced_mobile_final_project/home/home.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/profile/sign_in.dart';
+import 'package:advanced_mobile_final_project/profile/sign_up.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
 import 'package:advanced_mobile_final_project/search/search_bar.dart';
 import 'package:advanced_mobile_final_project/share/author/author_detail.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
           '/video-course': (context) => CourseDetail(),
           '/login': (context) => SignIn(),
           '/list-course': (context) => ListCourse(),
+          '/sign-up': (context) => SignUp(),
         },
       ),
     );

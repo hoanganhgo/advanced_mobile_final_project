@@ -40,7 +40,7 @@ class Course extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(model.level,
+            Text(model.requirement,
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,
@@ -48,9 +48,9 @@ class Course extends StatelessWidget {
               ),
             ),
             Text(' - '),
-            Text(model.date.day.toString() + '/'
-                + model.date.month.toString() +
-                '/' + model.date.year.toString(),
+            Text(model.updateAt.day.toString() + '/'
+                + model.updateAt.month.toString() +
+                '/' + model.updateAt.year.toString(),
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,

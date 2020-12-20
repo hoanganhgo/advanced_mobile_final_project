@@ -4,12 +4,12 @@ class CourseModel {
   String imageLink;
   String courseName;
   String authorName;
-  String level;
-  DateTime date;
+  String requirement;
+  DateTime updateAt;
   int totalHours = 365;
-  double stars;
+  double stars = 5;
   int rates;
 
-  CourseModel({this.imageLink, this.courseName, this.authorName, this.level,
-    this.date, this.stars, this.rates});
+  CourseModel({this.imageLink, this.courseName, this.authorName, this.requirement,
+    this.updateAt, this.stars, this.rates});
 }

@@ -1,15 +1,18 @@
 import 'package:advanced_mobile_final_project/model/author_model.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class AuthorDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
     AuthorModel model = ModalRoute.of(context).settings.arguments;
     print(model.name);
     return Scaffold(
-      appBar: AppBarCustom(name: 'Author'),
+      appBar: AppBarCustom(name: 'Author', avatar: store.avatar),
       body: Center(
         child: Column(
           children: [

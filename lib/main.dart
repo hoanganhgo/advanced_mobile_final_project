@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/home/home.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
+import 'package:advanced_mobile_final_project/profile/profile.dart';
 import 'package:advanced_mobile_final_project/profile/sign_in.dart';
 import 'package:advanced_mobile_final_project/profile/sign_up.dart';
 import 'package:advanced_mobile_final_project/search/search.dart';
@@ -41,27 +42,16 @@ class _MyAppState extends State<MyApp> {
         ),
         home: Main(),
         routes: {
+          '/main': (context) => Main(),
           '/author-detail': (context) => AuthorDetail(),
           '/video-course': (context) => CourseDetail(),
           '/login': (context) => SignIn(),
           '/list-course': (context) => ListCourse(),
           '/sign-up': (context) => SignUp(),
+          '/profile': (context) => Profile(),
         },
       ),
     );
-    // return MaterialApp(
-    //   title: 'E-Learning',
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //     visualDensity: VisualDensity.adaptivePlatformDensity,
-    //   ),
-    //   home: Main(),
-    //   routes: {
-    //     '/author-detail': (context) => AuthorDetail(),
-    //     '/video-course': (context) => CourseDetail(),
-    //     '/login': (context) => SignIn(),
-    //   },
-    // );
   }
 }
 
@@ -77,8 +67,10 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
+
     return Scaffold(
-      appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index]) : SearchBar(name: this.tabNames[this.index]),
+      appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index], avatar: store.avatar) : SearchBar(name: this.tabNames[this.index]),
       body: tabs[this.index],
       backgroundColor: Colors.grey.shade200,
       bottomNavigationBar: BottomNavigationBar(

@@ -14,7 +14,7 @@ class Search extends StatelessWidget {
     final store = Provider.of<StoreModel>(context);
     return ListView(
         scrollDirection: Axis.vertical,
-        children: CourseHorizontal.getListCourses(store.getAllCourses(type: int.parse(this.searchContent)), context)
+        //children: CourseHorizontal.getListCourses(store.getAllCourses(type: int.parse(this.searchContent)), context)
     );
   }
 }

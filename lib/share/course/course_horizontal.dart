@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/service/course_service.dart';
 import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,9 +15,10 @@ class CourseHorizontal extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.fromLTRB(0, 0, 3, 0),
-          child: Image.asset(this.model.imageLink,
-            height: 80,
+          child: Image(
+            image: NetworkImage(this.model.imageLink),
             width: 80,
+            height: 80,
           ),
         ),
         Column(
@@ -45,26 +47,20 @@ class CourseHorizontal extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(this.model.level,
+                Text(model.updateAt.day.toString() + '/'
+                    + model.updateAt.month.toString() +
+                    '/' + model.updateAt.year.toString(),
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: Constant.courseTextWeight,
                       color: Colors.black
                   ),
                 ),
-                Text(' - '),
-                Text(model.date.day.toString() + '/'
-                    + model.date.month.toString() +
-                    '/' + model.date.year.toString(),
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: Constant.courseTextWeight,
-                      color: Colors.black
-                  ),
-                ),
-                Text(' - '),
-                Text(model.date.hour.toString() + 'h'
-                    + model.date.minute.toString(),
+                Text('  |  '),
+                Text(this.model.requirement,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  softWrap: true,
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: Constant.courseTextWeight,
@@ -76,7 +72,7 @@ class CourseHorizontal extends StatelessWidget {
             Row(
               children: [
                 RatingBar.builder(
-                  initialRating: this.model.stars,
+                  initialRating: 5,
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
@@ -107,7 +103,8 @@ class CourseHorizontal extends StatelessWidget {
     );
   }
 
-  static List<Widget> getListCourses(List<CourseModel> courses, BuildContext context) {
+  static Future<List<Widget>> getListCourses(List<CourseModel> courses, BuildContext context) async {
+    courses = await CourseService.getTopNewCourses();
     List<Widget> result = new List<Container>();
     for (CourseModel course in courses) {
       result.add(

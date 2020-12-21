@@ -26,9 +26,50 @@ class CourseService {
     return data;
   }
 
+  static Future<List<CourseModel>> getTopSellCourses() async {
+    var url = 'http://api.dev.letstudy.org/course/top-sell';
+    var response = await http.post(url, body: {
+      'limit': '10',
+      'page': '1'
+    });
+    Map<String, dynamic> json = jsonDecode(response.body);
+    List<dynamic> list = json['payload'];
+
+    List<CourseModel> data = new List();
+    list.forEach((course) {
+      data.add(mapToCourseModel(course));
+    });
+
+    data.forEach((element) {
+      print(element.courseName);
+    });
+    return data;
+  }
+
+  static Future<List<CourseModel>> getTopRateCourses() async {
+    var url = 'http://api.dev.letstudy.org/course/top-rate';
+    var response = await http.post(url, body: {
+      'limit': '10',
+      'page': '1'
+    });
+    Map<String, dynamic> json = jsonDecode(response.body);
+    List<dynamic> list = json['payload'];
+
+    List<CourseModel> data = new List();
+    list.forEach((course) {
+      data.add(mapToCourseModel(course));
+    });
+
+    data.forEach((element) {
+      print(element.courseName);
+    });
+    return data;
+  }
+
   static CourseModel mapToCourseModel(dynamic course) {
+    var requirement = course['requirement'] == null ? 'None' : course['requirement'][0];
       return new CourseModel(imageLink: course['imageUrl'], courseName: course['title'],
-      authorName: course['instructor.user.name'], requirement: course['requirement'][0],
+      authorName: course['instructor.user.name'], requirement: requirement,
       updateAt: DateTime.parse(course['updatedAt']), rates: course['ratedNumber']);
   }
 }

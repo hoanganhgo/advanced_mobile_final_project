@@ -29,21 +29,21 @@ class _BrowserState extends State<StatefulWidget> {
             event: () {
               Navigator.pushNamed(context, '/list-course', arguments: {
                 'name': 'Top New Course',
-                'data': store.getAllCourses(type: 1)
+                'filter': 'top-new'
               });
             }),
           MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87,
               event: () {
                 Navigator.pushNamed(context, '/list-course', arguments: {
                   'name': 'Top Sell',
-                  'data': store.getAllCourses(type: 2)
+                  'filter': 'top-sell'
                 });
               }),
           MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87,
               event: () {
                 Navigator.pushNamed(context, '/list-course', arguments: {
                   'name': 'Top Rating',
-                  'data': store.getAllCourses(type: 3)
+                  'filter': 'top-rate'
                 });
               }),
           Divider(),

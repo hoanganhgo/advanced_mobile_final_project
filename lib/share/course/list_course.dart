@@ -9,20 +9,20 @@ import 'course_horizontal.dart';
 
 class ListCourse extends StatelessWidget{
   String name;
-  List<CourseModel> data;
-  ListCourse({this.name, this.data});
+  String filter;
+  ListCourse({this.name, this.filter});
 
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
     Map args = ModalRoute.of(context).settings.arguments;
     this.name = args['name'];
-    this.data = args['data'];
+    this.filter = args['filter'];
 
     return Scaffold(
       appBar: AppBarCustom(name: this.name, avatar: store.avatar),
       body: FutureBuilder<List<Widget>>(
-        future: CourseHorizontal.getListCourses(this.data, context),
+        future: CourseHorizontal.getListCourses(this.filter, context),
           builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
             if( snapshot.connectionState == ConnectionState.waiting){
               return  Center(child: Text('Please wait its loading...'));

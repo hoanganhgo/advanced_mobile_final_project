@@ -9,6 +9,14 @@ class CourseHorizontal extends StatelessWidget {
   CourseModel model;
   CourseHorizontal(this.model);
 
+  String compact(String text) {
+    if (text.length > 20) {
+      return text.substring(0, 20) + '...';
+    } else {
+      return text;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -57,7 +65,7 @@ class CourseHorizontal extends StatelessWidget {
                   ),
                 ),
                 Text('  |  '),
-                Text(this.model.requirement,
+                Text(this.compact(this.model.requirement),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   softWrap: true,
@@ -103,8 +111,16 @@ class CourseHorizontal extends StatelessWidget {
     );
   }
 
-  static Future<List<Widget>> getListCourses(List<CourseModel> courses, BuildContext context) async {
-    courses = await CourseService.getTopNewCourses();
+  static Future<List<Widget>> getListCourses(String filter, BuildContext context) async {
+    List<CourseModel> courses;
+    if (filter == 'top-new') {
+      courses = await CourseService.getTopNewCourses();
+    } else if (filter == 'top-sell') {
+      courses = await CourseService.getTopSellCourses();
+    } else if (filter == 'top-rate') {
+      courses = await CourseService.getTopRateCourses();
+    }
+
     List<Widget> result = new List<Container>();
     for (CourseModel course in courses) {
       result.add(

@@ -20,9 +20,6 @@ class CourseService {
       data.add(mapToCourseModel(course));
     });
 
-    data.forEach((element) {
-      print(element.courseName);
-    });
     return data;
   }
 
@@ -68,8 +65,9 @@ class CourseService {
 
   static CourseModel mapToCourseModel(dynamic course) {
     var requirement = course['requirement'] == null ? 'None' : course['requirement'][0];
-      return new CourseModel(imageLink: course['imageUrl'], courseName: course['title'],
-      authorName: course['instructor.user.name'], requirement: requirement,
-      updateAt: DateTime.parse(course['updatedAt']), rates: course['ratedNumber']);
+      return new CourseModel(imageLink: course['imageUrl'], videoLink: course['promoVidUrl'],
+          courseName: course['title'], authorName: course['instructor.user.name'],
+          requirement: requirement, updateAt: DateTime.parse(course['updatedAt']),
+          rates: course['ratedNumber'], description: course['description'], totalHours: course['totalHours']);
   }
 }

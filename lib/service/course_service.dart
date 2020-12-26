@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:advanced_mobile_final_project/model/course_model.dart';
-import 'package:advanced_mobile_final_project/share/course/course.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CourseService {

@@ -51,10 +51,21 @@ class _HomeState extends State<Home> {
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: Constant.heightListCourse,
-          child: ListView(
-            // This next line does the trick.
-            scrollDirection: Axis.horizontal,
-            children: Course.getListCourses(store.getAllCourses(), context)
+          child: FutureBuilder<List<Widget>>(
+            future: Course.getListCourses('top-new', context),
+            builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
+              if( snapshot.connectionState == ConnectionState.waiting){
+                return  Center(child: Text('Please wait its loading...'));
+              }else{
+                if (snapshot.hasError)
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                else
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: snapshot.data,
+                  );  // snapshot.data  :- get your object which is pass from your downloadData() function
+              }
+            },
           ),
         ),
         Divider(),
@@ -62,10 +73,21 @@ class _HomeState extends State<Home> {
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: Constant.heightListCourse,
-          child: ListView(
-            // This next line does the trick.
-              scrollDirection: Axis.horizontal,
-              children: Course.getListCourses(store.getAllCourses(type: 1), context)
+          child: FutureBuilder<List<Widget>>(
+            future: Course.getListCourses('top-new', context),
+            builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
+              if( snapshot.connectionState == ConnectionState.waiting){
+                return  Center(child: Text('Please wait its loading...'));
+              }else{
+                if (snapshot.hasError)
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                else
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: snapshot.data,
+                  );  // snapshot.data  :- get your object which is pass from your downloadData() function
+              }
+            },
           ),
         ),
         Divider(),
@@ -73,10 +95,22 @@ class _HomeState extends State<Home> {
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: Constant.heightListCourse,
-          child: ListView(
-            // This next line does the trick.
-              scrollDirection: Axis.horizontal,
-              children: Course.getListCourses(store.getAllCourses(type: 2), context)
+          child: FutureBuilder<List<Widget>>(
+            future: Course.getListCourses('top-new', context),
+            builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
+              if( snapshot.connectionState == ConnectionState.waiting){
+                return  Center(child: Text('Please wait its loading...'));
+              }else{
+                if (snapshot.hasError)
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                else
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: snapshot.data,
+                  );  // snapshot.data  :- get your object which is pass from your downloadData() function
+              }
+            },
+            //children: CourseHorizontal.getListCourses(this.data, context)
           ),
         ),
       ],

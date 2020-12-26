@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/service/course_service.dart';
 import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,14 +9,23 @@ class Course extends StatelessWidget {
   CourseModel model;
   Course(this.model);
 
+  String compact(String text) {
+    if (text.length > 12) {
+      return text.substring(0, 12) + '...';
+    } else {
+      return text;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(model.imageLink,
+        Image(
+          image: NetworkImage(this.model.imageLink),
+          width: 200,
           height: 150,
-          width: 210,
         ),
         Container(
           width: 200,
@@ -30,7 +40,7 @@ class Course extends StatelessWidget {
             ),
           ),
         ),
-        Text(model.authorName,
+        Text(this.model.authorName,
           style: TextStyle(
               fontSize: Constant.courseTextSize,
               fontWeight: Constant.courseTextWeight,
@@ -40,7 +50,7 @@ class Course extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(model.requirement,
+            Text(this.compact(this.model.requirement),
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,
@@ -48,18 +58,9 @@ class Course extends StatelessWidget {
               ),
             ),
             Text(' - '),
-            Text(model.updateAt.day.toString() + '/'
+            Text(this.model.updateAt.day.toString() + '/'
                 + model.updateAt.month.toString() +
                 '/' + model.updateAt.year.toString(),
-              style: TextStyle(
-                  fontSize: Constant.courseTextSize,
-                  fontWeight: Constant.courseTextWeight,
-                  color: Colors.black
-              ),
-            ),
-            Text(' - '),
-            Text((model.totalHours/60).round().toString() + 'h'
-              + (model.totalHours%60).round().toString(),
               style: TextStyle(
                   fontSize: Constant.courseTextSize,
                   fontWeight: Constant.courseTextWeight,
@@ -71,7 +72,7 @@ class Course extends StatelessWidget {
         Row(
           children: [
             RatingBar.builder(
-              initialRating: this.model.stars,
+              initialRating: 5,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
@@ -100,7 +101,16 @@ class Course extends StatelessWidget {
     );
   }
 
-  static List<Widget> getListCourses(List<CourseModel> courses, BuildContext context) {
+  static Future<List<Widget>> getListCourses(String filter, BuildContext context) async {
+    List<CourseModel> courses;
+    if (filter == 'top-new') {
+      courses = await CourseService.getTopNewCourses();
+    } else if (filter == 'top-sell') {
+      courses = await CourseService.getTopSellCourses();
+    } else if (filter == 'top-rate') {
+      courses = await CourseService.getTopRateCourses();
+    }
+
     List<Widget> result = new List<Container>();
     for (CourseModel course in courses) {
       result.add(

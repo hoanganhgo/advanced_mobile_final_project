@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
@@ -129,6 +130,7 @@ class _SignInState extends State<SignIn> {
 
                   Map<String, dynamic> json = jsonDecode(response.body);
                   Map<String, dynamic> userInfo = json['userInfo'];
+
                   if (response.statusCode == 200) {
                     store.user = new UserModel(userInfo['id'], userInfo['email'],
                         userInfo['avatar'], userInfo['name'], userInfo['phone'], json['message']);

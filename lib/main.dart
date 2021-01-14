@@ -1,20 +1,20 @@
-import 'package:advanced_mobile_final_project/home/home.dart';
-import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:advanced_mobile_final_project/profile/profile.dart';
-import 'package:advanced_mobile_final_project/profile/sign_in.dart';
-import 'package:advanced_mobile_final_project/profile/sign_up.dart';
-import 'package:advanced_mobile_final_project/search/search.dart';
-import 'package:advanced_mobile_final_project/search/search_bar.dart';
-import 'package:advanced_mobile_final_project/share/author/author_detail.dart';
-import 'package:advanced_mobile_final_project/share/course/course_detail.dart';
-import 'package:advanced_mobile_final_project/share/course/list_course.dart';
-import 'package:advanced_mobile_final_project/share/other/app_bar.dart';
-import 'package:advanced_mobile_final_project/share/other/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'browser/browser.dart';
-import 'download/empty_download.dart';
+import 'business/share/author/author_detail.dart';
+import 'business/share/course/course_detail.dart';
+import 'business/share/course/list_course.dart';
+import 'business/share/other/app_bar.dart';
+import 'constant/constant.dart';
+import 'components/browser/browser.dart';
+import 'components/download/empty_download.dart';
+import 'components/home/home.dart';
+import 'components/profile/profile.dart';
+import 'components/profile/sign_in.dart';
+import 'components/profile/sign_up.dart';
+import 'components/search/search.dart';
+import 'components/search/search_bar.dart';
+import 'model/store_model.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,11 +1,16 @@
-import 'package:advanced_mobile_final_project/business/share/author/author_horizontal.dart';
+import 'package:advanced_mobile_final_project/components/search/search-all.dart';
+import 'package:advanced_mobile_final_project/components/search/search-author.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'search.dart';
+import 'search-course.dart';
 
 class SearchResult extends StatelessWidget {
+  String searchContent;
+
+  SearchResult({this.searchContent});
+
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
@@ -36,12 +41,9 @@ class SearchResult extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Search(searchContent: '1'),
-            Search(searchContent: '2'),
-            ListView(
-              scrollDirection: Axis.vertical,
-              children: AuthorHorizontal.getAllAuthors(store.getAllAuthors()),
-            ),
+            SearchAll(searchContent: this.searchContent),
+            SearchCourse(searchContent: this.searchContent),
+            SearchAuthor(searchContent: this.searchContent)
           ],
         ),
       ),

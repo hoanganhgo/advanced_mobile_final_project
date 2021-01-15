@@ -1,22 +1,24 @@
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AuthorHorizontal extends StatelessWidget {
+class AuthorVertical extends StatelessWidget {
   AuthorModel model;
-  AuthorHorizontal(this.model);
+  AuthorVertical(this.model);
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return RaisedButton(
         onPressed: () {
           Navigator.pushNamed(context, '/author-detail', arguments: this.model);
         },
+        color: Constant.bgColorCourse,
         child: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage(this.model.imageLink),
-              radius: 25.0,
+              backgroundImage: NetworkImage(this.model.avatar),
+              radius: 40.0,
             ),
             SizedBox(width: 5),
             Column(
@@ -50,7 +52,7 @@ class AuthorHorizontal extends StatelessWidget {
       result.add(
           Container(
             margin: EdgeInsets.symmetric(vertical: 5.0),
-            child: AuthorHorizontal(author))
+            child: AuthorVertical(author))
       );
     }
     return result;

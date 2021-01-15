@@ -1,15 +1,14 @@
+import 'package:advanced_mobile_final_project/business/service/course_service.dart';
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'package:advanced_mobile_final_project/constant/list-courses-type.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import 'course_horizontal.dart';
-
-class ListCourse extends StatelessWidget{
+class ListCourseVertical extends StatelessWidget{
   String name;
-  String filter;
-  ListCourse({this.name, this.filter});
+  int filter;
+  ListCourseVertical({this.name, this.filter});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class ListCourse extends StatelessWidget{
     return Scaffold(
       appBar: AppBarCustom(name: this.name, avatar: store.avatar),
       body: FutureBuilder<List<Widget>>(
-        future: CourseHorizontal.getListCourses(this.filter, context),
+        future: CourseService.getListCourses(this.filter, context, ListCourseType.LIST_VERTICAL),
           builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
             if( snapshot.connectionState == ConnectionState.waiting){
               return  Center(child: Text('Please wait its loading...'));

@@ -18,7 +18,7 @@ class AuthorDetail extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage(model.imageLink),
+              backgroundImage: AssetImage(model.avatar),
             ),
             SizedBox(height: 5),
             Text(model.name,

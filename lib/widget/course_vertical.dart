@@ -1,14 +1,11 @@
-import 'package:advanced_mobile_final_project/business/service/course_service.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/constant/constant.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
-import 'package:advanced_mobile_final_project/network/course_network.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CourseHorizontal extends StatelessWidget {
-  CourseModel model;
-  CourseHorizontal(this.model);
+class CourseVertical extends StatelessWidget {
+  final CourseModel model;
+  CourseVertical(this.model);
 
   String compact(String text) {
     if (text.length > 20) {
@@ -110,33 +107,5 @@ class CourseHorizontal extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  static Future<List<Widget>> getListCourses(String filter, BuildContext context) async {
-    List<CourseModel> courses;
-    if (filter == 'top-new') {
-      courses = await CourseNetwork.getTopNewCourses(10, 1);
-    } else if (filter == 'top-sell') {
-      courses = await CourseNetwork.getTopSellCourses(10, 1);
-    } else if (filter == 'top-rate') {
-      courses = await CourseNetwork.getTopRateCourses(10, 1);
-    }
-
-    List<Widget> result = new List<Container>();
-    for (CourseModel course in courses) {
-      result.add(
-          Container(
-            margin: EdgeInsets.all(Constant.insetCourse),
-            child: RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/video-course', arguments: course);
-              },
-              color: Constant.bgColorCourse,
-              child: CourseHorizontal(course),
-            ),
-          )
-      );
-    }
-    return result;
   }
 }

@@ -129,10 +129,11 @@ class _SignInState extends State<SignIn> {
 
                   Map<String, dynamic> json = jsonDecode(response.body);
                   Map<String, dynamic> userInfo = json['userInfo'];
+                  String token = json["token"];
 
                   if (response.statusCode == 200) {
                     store.user = new UserModel(userInfo['id'], userInfo['email'],
-                        userInfo['avatar'], userInfo['name'], userInfo['phone'], json['message']);
+                        userInfo['avatar'], userInfo['name'], userInfo['phone'], token);
 
                     store.avatar = NetworkImage(store.user.avatar);
                     Navigator.pop(context);

@@ -1,9 +1,9 @@
 import 'package:advanced_mobile_final_project/business/share/author/author.dart';
 import 'package:advanced_mobile_final_project/business/share/other/category.dart';
+import 'package:advanced_mobile_final_project/constant/top-courses-type.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/widget/my_button.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Browser extends StatefulWidget {
@@ -26,21 +26,21 @@ class _BrowserState extends State<StatefulWidget> {
             event: () {
               Navigator.pushNamed(context, '/list-course', arguments: {
                 'name': 'Top New Course',
-                'filter': 'top-new'
+                'filter': TopCourseType.TOP_NEW
               });
             }),
           MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87,
               event: () {
                 Navigator.pushNamed(context, '/list-course', arguments: {
                   'name': 'Top Sell',
-                  'filter': 'top-sell'
+                  'filter': TopCourseType.TOP_SELL
                 });
               }),
           MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87,
               event: () {
                 Navigator.pushNamed(context, '/list-course', arguments: {
                   'name': 'Top Rating',
-                  'filter': 'top-rate'
+                  'filter': TopCourseType.TOP_RATE
                 });
               }),
           Divider(),

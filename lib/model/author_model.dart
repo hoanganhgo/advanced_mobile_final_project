@@ -1,7 +1,7 @@
 class AuthorModel {
   String name;
-  String imageLink;
+  String avatar;
   int numberOfCourses;
 
-  AuthorModel({this.name, this.imageLink, this.numberOfCourses});
+  AuthorModel({this.name, this.avatar, this.numberOfCourses});
 }

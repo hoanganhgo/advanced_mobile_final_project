@@ -7,9 +7,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Course extends StatelessWidget {
-  CourseModel model;
-  Course(this.model);
+class CourseHorizontal extends StatelessWidget {
+  final CourseModel model;
+  CourseHorizontal(this.model);
 
   String compact(String text) {
     if (text.length > 12) {

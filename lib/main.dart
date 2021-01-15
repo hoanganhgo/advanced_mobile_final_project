@@ -1,9 +1,10 @@
+import 'package:advanced_mobile_final_project/components/search/search-course.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'business/share/author/author_detail.dart';
 import 'business/share/course/course_detail.dart';
-import 'business/share/course/list_course.dart';
+import 'ui/list-course-vertical.dart';
 import 'business/share/other/app_bar.dart';
 import 'constant/constant.dart';
 import 'components/browser/browser.dart';
@@ -12,9 +13,9 @@ import 'components/home/home.dart';
 import 'components/profile/profile.dart';
 import 'components/profile/sign_in.dart';
 import 'components/profile/sign_up.dart';
-import 'components/search/search.dart';
 import 'components/search/search_bar.dart';
 import 'model/store_model.dart';
+import 'package:multilanguage/multilanguage.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,7 +47,7 @@ class _MyAppState extends State<MyApp> {
           '/author-detail': (context) => AuthorDetail(),
           '/video-course': (context) => CourseDetail(),
           '/login': (context) => SignIn(),
-          '/list-course': (context) => ListCourse(),
+          '/list-course': (context) => ListCourseVertical(),
           '/sign-up': (context) => SignUp(),
           '/profile': (context) => Profile(),
         },
@@ -61,13 +62,15 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  var tabs = [Home(), EmptyDownload(), Browser(), Search(searchContent: '0')];
+  var tabs = [Home(), EmptyDownload(), Browser(), SearchCourse(searchContent: "")];
   var tabNames = ['Home', 'Download', 'Browser', 'Search'];
   var index = 0;
 
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
+    // Multilanguage.setLanguage(path: Languages.en, context: context);
+    // multilang.get('title');
 
     return Scaffold(
       appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index], avatar: store.avatar) : SearchBar(name: this.tabNames[this.index]),

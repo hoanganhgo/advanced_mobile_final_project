@@ -15,7 +15,7 @@ class Author extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage(this.model.imageLink),
+              backgroundImage: AssetImage(this.model.avatar),
               radius: 32.0,
             ),
             Text(this.model.name,

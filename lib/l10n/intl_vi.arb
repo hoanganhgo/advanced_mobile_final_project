@@ -20,5 +20,7 @@
   "message_sign_in_fail": "Sai tài khoản mật khẩu",
   "message_username_empty": "Tên tài khoản không được bỏ trống",
   "message_username_space": "Tên tài khoản bao gồm khoản trắng",
-  "message_password_short": "Mật khẩu ít hơn 6 ký tự"
+  "message_password_short": "Mật khẩu ít hơn 6 ký tự",
+  "forget_password": "Quên mật khẩu",
+  "send_email": "GỬI EMAIL"
 }

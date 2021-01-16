@@ -254,6 +254,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Forget Password`
+  String get forget_password {
+    return Intl.message(
+      'Forget Password',
+      name: 'forget_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SEND EMAIL`
+  String get send_email {
+    return Intl.message(
+      'SEND EMAIL',
+      name: 'send_email',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:advanced_mobile_final_project/widget/input-box.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class SignUp extends StatelessWidget {
-  double WIDTH = 300;
   var emailInput = new TextEditingController();
   var phoneInput = new TextEditingController();
   var usernameInput = new TextEditingController();
@@ -87,7 +87,7 @@ class SignUp extends StatelessWidget {
               InputBox(title: S.of(context).re_password, editText: this.rePasswordInput, security: true),
               SizedBox(height: 30),
               Container(
-                width: this.WIDTH,
+                width: Constant.BUTTON_WIDTH,
                 child: RaisedButton(
                   onPressed: () async {
                     var content = validateInput(context);

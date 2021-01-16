@@ -1,8 +1,8 @@
-import 'package:advanced_mobile_final_project/business/service/course_service.dart';
+import 'package:advanced_mobile_final_project/business/service/course-service.dart';
 import 'package:advanced_mobile_final_project/constant/top-courses-type.dart';
 import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
-import 'package:advanced_mobile_final_project/network/course_network.dart';
+import 'package:advanced_mobile_final_project/network/course-network.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

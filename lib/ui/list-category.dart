@@ -1,12 +1,8 @@
-import 'package:advanced_mobile_final_project/business/service/course-service.dart';
+import 'package:advanced_mobile_final_project/business/service/category-service.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
-import 'package:advanced_mobile_final_project/constant/list-courses-type.dart';
 import 'package:flutter/material.dart';
 
-class ListCourseHorizontal extends StatelessWidget {
-  int filter;
-
-  ListCourseHorizontal(this.filter);
+class ListCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +10,7 @@ class ListCourseHorizontal extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 20.0),
       height: Constant.heightListCourse,
       child: FutureBuilder<List<Widget>>(
-        future: CourseService.getListCourses(this.filter, context, ListCourseType.LIST_HORIZONTAL),
+        future: CategoryService.getAllCategories(),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
             return  Center(child: Text('Please wait its loading...'));

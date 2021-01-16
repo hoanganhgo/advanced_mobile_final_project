@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/ui/list-course-vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -192,14 +193,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                             ),
                             Container(
                               height: MediaQuery.of(context).copyWith().size.height - 360,
-                              child: ListView.builder(
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Text('lesson'),
-                                  );
-                                },
-                              ),
+                              child: ListCourseVertical(name: "new", filter: 1)
                             )
                           ],
                         ),

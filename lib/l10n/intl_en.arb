@@ -20,5 +20,7 @@
   "message_sign_in_fail": "Username or Password is incorrect",
   "message_username_empty": "Username is empty",
   "message_username_space": "Username must not contain space character",
-  "message_password_short": "Password must have greater than 6 character"
+  "message_password_short": "Password must have greater than 6 character",
+  "forget_password": "Forget Password",
+  "send_email": "SEND EMAIL"
 }

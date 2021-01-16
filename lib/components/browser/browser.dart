@@ -1,8 +1,11 @@
+import 'package:advanced_mobile_final_project/business/service/category-service.dart';
 import 'package:advanced_mobile_final_project/business/share/author/author.dart';
-import 'package:advanced_mobile_final_project/business/share/other/category.dart';
-import 'package:advanced_mobile_final_project/constant/top-courses-type.dart';
+import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/widget/category.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:advanced_mobile_final_project/widget/my_button.dart';
+import 'package:advanced_mobile_final_project/ui/list-category.dart';
+import 'package:advanced_mobile_final_project/ui/list-course-recommend.dart';
+import 'package:advanced_mobile_final_project/widget/header-course.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,55 +17,56 @@ class Browser extends StatefulWidget {
 }
 
 class _BrowserState extends State<StatefulWidget> {
+  String id;
+  Function seeMore;
+
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
+
+    if (store.user == null) {
+      setState(() {
+        this.id = "";
+        this.seeMore = () {
+
+        };
+      });
+    } else {
+      setState(() {
+        this.id = store.user.id;
+        this.seeMore = () {
+          Navigator.pushNamed(context, '/see-more-recommend', arguments: {
+            'id': this.id,
+          });
+        };
+      });
+    }
+
     return Container(
       margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
-          MyLargeButton(icon: Icons.new_releases, text: 'TOP NEW COURSE', color: Colors.black87,
-            event: () {
-              Navigator.pushNamed(context, '/list-course', arguments: {
-                'name': 'Top New Course',
-                'filter': TopCourseType.TOP_NEW
-              });
-            }),
-          MyLargeButton(icon: Icons.shopping_bag, text: 'TOP SELL', color: Colors.black87,
-              event: () {
-                Navigator.pushNamed(context, '/list-course', arguments: {
-                  'name': 'Top Sell',
-                  'filter': TopCourseType.TOP_SELL
-                });
-              }),
-          MyLargeButton(icon: Icons.star, text: 'TOP RATING', color: Colors.black87,
-              event: () {
-                Navigator.pushNamed(context, '/list-course', arguments: {
-                  'name': 'Top Rating',
-                  'filter': TopCourseType.TOP_RATE
-                });
-              }),
+          HeaderCourse(title: "Recommend for you", seeMore: this.seeMore),
+          ListCourseRecommend(this.id),
           Divider(),
           Text('Category',
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),),
+              fontSize: Constant.titleCourseSize,
+              fontWeight: Constant.titleCourseWeight,
+            ),
+          ),
           SizedBox(height: 5),
           Container(
-            height: 130,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: Category.getAllCategories(store.getAllCategories())
-            ),
+            height: 150,
+            child: ListCategory(),
           ),
           Divider(),
           Text('Top Authors',
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),),
+              fontSize: Constant.titleCourseSize,
+              fontWeight: Constant.titleCourseWeight,
+            ),
+          ),
           SizedBox(height: 5),
           Container(
             height: 100,

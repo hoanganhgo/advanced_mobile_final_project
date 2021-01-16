@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'course_vertical.dart';
 
-class CourseWidget extends StatelessWidget {
+class CourseVerticalWidget extends StatelessWidget {
   CourseModel course;
 
 
-  CourseWidget({this.course});
+  CourseVerticalWidget({this.course});
 
   @override
   Widget build(BuildContext context) {

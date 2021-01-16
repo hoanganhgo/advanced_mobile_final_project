@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "btn_ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "download" : MessageLookupByLibrary.simpleMessage("Download"),
     "email" : MessageLookupByLibrary.simpleMessage("Email"),
+    "forget_password" : MessageLookupByLibrary.simpleMessage("Forget Password"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "message_email_empty" : MessageLookupByLibrary.simpleMessage("Email is empty"),
     "message_email_invalid" : MessageLookupByLibrary.simpleMessage("Email is not valid"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "phone" : MessageLookupByLibrary.simpleMessage("Phone"),
     "re_password" : MessageLookupByLibrary.simpleMessage("Re-Password"),
     "search" : MessageLookupByLibrary.simpleMessage("Search"),
+    "send_email" : MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
     "sign_in" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "sign_up" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "username" : MessageLookupByLibrary.simpleMessage("Username")

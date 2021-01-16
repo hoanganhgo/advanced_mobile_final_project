@@ -79,6 +79,15 @@ flutter:
     - assets/images/avatar/messi.jpg
     - assets/images/avatar/ronaldo.jpg
     - assets/images/avatar/trump.jpg
+    - assets/images/category/artist.jpg
+    - assets/images/category/database.jpg
+    - assets/images/category/game.jpg
+    - assets/images/category/mobile.png
+    - assets/images/category/projectmanager.jpg
+    - assets/images/category/testing.jpg
+    - assets/images/category/web.png
+    - assets/images/category/windows.jpg
+    - assets/images/category/other.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

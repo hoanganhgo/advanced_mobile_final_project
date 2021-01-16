@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/model/category_model.dart';
+import 'package:advanced_mobile_final_project/network/course-network.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
@@ -9,13 +10,16 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
         onPressed: () {
-
+          Navigator.pushNamed(context, '/list-course-type', arguments: {
+            'id': model.id,
+            'name': model.name
+          });
         },
         child: Column(
           children: [
             Image(
               height: 80,
-              image: AssetImage(this.model.imageLink)
+              image: AssetImage(this.model.imagePath)
             ),
             Text(this.model.name,
             overflow: TextOverflow.ellipsis,

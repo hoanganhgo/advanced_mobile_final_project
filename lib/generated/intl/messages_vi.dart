@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "btn_ok" : MessageLookupByLibrary.simpleMessage("Đồng ý"),
     "download" : MessageLookupByLibrary.simpleMessage("Tải xuống"),
     "email" : MessageLookupByLibrary.simpleMessage("Email"),
+    "forget_password" : MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
     "home" : MessageLookupByLibrary.simpleMessage("Trang chủ"),
     "message_email_empty" : MessageLookupByLibrary.simpleMessage("Email không được bỏ trống"),
     "message_email_invalid" : MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "phone" : MessageLookupByLibrary.simpleMessage("Số điện thoại"),
     "re_password" : MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu"),
     "search" : MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
+    "send_email" : MessageLookupByLibrary.simpleMessage("GỬI EMAIL"),
     "sign_in" : MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "sign_up" : MessageLookupByLibrary.simpleMessage("Đăng ký"),
     "username" : MessageLookupByLibrary.simpleMessage("Tên tài khoản")

@@ -1,4 +1,4 @@
-import 'package:advanced_mobile_final_project/business/service/course_service.dart';
+import 'package:advanced_mobile_final_project/business/service/course-service.dart';
 import 'package:flutter/material.dart';
 
 class SearchCourse extends StatefulWidget {

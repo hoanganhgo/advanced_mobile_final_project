@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
 import 'package:advanced_mobile_final_project/widget/input-box.dart';
@@ -20,17 +21,14 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  double WIDTH = 300;
-  var usernameInput = new TextEditingController();
+  var emailInput = new TextEditingController();
   var passwordInput = new TextEditingController();
 
   String validateInput(BuildContext context) {
     var content = "";
 
-    if (this.usernameInput.text.isEmpty) {
-      content = S.of(context).message_username_empty;
-    } else if (Validation.hasSpaceCharacter(this.usernameInput.text)) {
-      content = S.of(context).message_username_space;
+    if (!Validation.isEmail(this.emailInput.text)) {
+      content = S.of(context).message_email_invalid;
     } else if (this.passwordInput.text.length < 6) {
       content = S.of(context).message_password_short;
     }
@@ -82,12 +80,12 @@ class _SignInState extends State<SignIn> {
             Image(
               image: AssetImage('assets/images/e-learning.webp')
             ),
-            InputBox(title: S.of(context).username, editText: this.usernameInput),
+            InputBox(title: S.of(context).email, editText: this.emailInput),
             SizedBox(height: 20),
             InputBox(title: S.of(context).password, editText: this.passwordInput, security: true),
             SizedBox(height: 30),
             Container(
-              width: this.WIDTH,
+              width: Constant.BUTTON_WIDTH,
               child: RaisedButton(
                 onPressed: () async {
                   var content = validateInput(context);
@@ -97,7 +95,7 @@ class _SignInState extends State<SignIn> {
                   }
 
                   var response = await http.post(API.SIGN_IN, body: {
-                    'email': this.usernameInput.text,
+                    'email': this.emailInput.text,
                     'password': this.passwordInput.text
                   });
 
@@ -129,16 +127,33 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Container(
-              width: this.WIDTH,
+              width: Constant.BUTTON_WIDTH,
               child: RaisedButton(
                 onPressed: () async {
                   var result = await Navigator.pushNamed(context, '/sign-up');
-                  this.usernameInput.text = result;
+                  this.emailInput.text = result;
                 },
                 color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
                   S.of(context).SIGN_UP,
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: Constant.BUTTON_WIDTH,
+              child: RaisedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, '/forget-password');
+                },
+                color: Colors.black87,
+                textColor: Colors.white,
+                child: Text(
+                  "FORGET PASSWORD",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500

@@ -10,10 +10,10 @@ class StoreModel with ChangeNotifier {
   ImageProvider avatar = AssetImage('assets/images/none_avatar.jpg');
 
   List<CategoryModel> _categories = [
-    new CategoryModel(name: 'Software Programing', imageLink: 'assets/images/course/csharp.jpg'),
-    new CategoryModel(name: 'Machine Learning', imageLink: 'assets/images/course/ai.jpg'),
-    new CategoryModel(name: 'Mobile', imageLink: 'assets/images/course/ios.png'),
-    new CategoryModel(name: 'Web develop', imageLink: 'assets/images/course/nodejs.png'),
+    new CategoryModel(name: 'Software Programing', imagePath: 'assets/images/course/csharp.jpg'),
+    new CategoryModel(name: 'Machine Learning', imagePath: 'assets/images/course/ai.jpg'),
+    new CategoryModel(name: 'Mobile', imagePath: 'assets/images/course/ios.png'),
+    new CategoryModel(name: 'Web develop', imagePath: 'assets/images/course/nodejs.png'),
   ];
 
   List<CourseModel> _courses = [

@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class Profile extends StatelessWidget {
               backgroundImage: NetworkImage(model.avatar)
             ),
             SizedBox(height: 5),
-            Text(model.name == null ? 'Unknown' : model.name,
+            Text(model.name == null ? 'Anonymous' : model.name,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -66,6 +67,26 @@ class Profile extends StatelessWidget {
                     ),
                   ],
                 )
+            ),
+            Container(
+              width: Constant.BUTTON_WIDTH,
+              child: RaisedButton(
+                onPressed: () async {
+                  store.user = null;
+                  store.avatar = AssetImage('assets/images/none_avatar.jpg');
+                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/main');
+                },
+                color: Colors.black87,
+                textColor: Colors.white,
+                child: Text(
+                  "SIGN OUT",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
             ),
           ],
         ),

@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'package:advanced_mobile_final_project/constant/api.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
+import 'package:advanced_mobile_final_project/widget/input-box.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,24 +14,31 @@ class SignUp extends StatelessWidget {
   var phoneInput = new TextEditingController();
   var usernameInput = new TextEditingController();
   var passwordInput = new TextEditingController();
+  var rePasswordInput = new TextEditingController();
 
-  validateInput() {
+  validateInput(BuildContext context) {
     String content = '';
     if (this.emailInput.text.isEmpty) {
-      content = 'Email is empty';
-    } else if (this.phoneInput.text.isEmpty) {
-      content = 'Phone is empty';
+      content = S.of(context).message_email_empty;
+    } else if (!Validation.isEmail(this.emailInput.text)) {
+      content = S.of(context).message_email_invalid;
+    } else if (!Validation.isNumberPhone(this.phoneInput.text)) {
+      content = S.of(context).message_phone_invalid;
     } else if (this.usernameInput.text.isEmpty) {
-      content = 'Username is empty';
+      content = S.of(context).message_username_empty;
+    } else if (Validation.hasSpaceCharacter(this.usernameInput.text)) {
+      content = S.of(context).message_username_space;
     } else if (this.passwordInput.text.length < 6) {
-      content = 'Password must have greater than 6 character';
+      content = S.of(context).message_password_short;
+    } else if (this.passwordInput.text.compareTo(this.rePasswordInput.text) != 0) {
+      content = S.of(context).message_password_not_match;
     }
     return content;
   }
 
   showAlertDialog(BuildContext context, bool isSuccess, String content) {
     Widget okButton = FlatButton(
-      child: Text("OK"),
+      child: Text(S.of(context).btn_ok),
       onPressed:  () {
         if (isSuccess) {
           Navigator.pop(context);
@@ -40,7 +51,7 @@ class SignUp extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("SignUp"),
+      title: Text(S.of(context).sign_up),
       content: Text(content),
       actions: [
         okButton,
@@ -59,134 +70,33 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarCustom(name: 'Sign Up', avatar: AssetImage('assets/images/none_avatar.jpg')),
+        appBar: AppBarCustom(name: S.of(context).sign_up, avatar: AssetImage('assets/images/none_avatar.jpg')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image(
-                image: AssetImage('assets/images/e-learning.webp'),
-                width: 200,
-              ),
-              Container(
-                color: Colors.white70,
-                width: this.WIDTH,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Email',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Container(
-                      color: Colors.black12,
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        controller: this.emailInput,
-                      ),
-                    )
-                  ],
-                ),
-              ),
               SizedBox(height: 5),
-              Container(
-                color: Colors.white70,
-                width: this.WIDTH,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Phone',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Container(
-                      color: Colors.black12,
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        keyboardType: TextInputType.phone,
-                        controller: this.phoneInput,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              InputBox(title: S.of(context).email, editText: this.emailInput),
               SizedBox(height: 5),
-              Container(
-                color: Colors.white70,
-                width: this.WIDTH,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Username',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Container(
-                      color: Colors.black12,
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        controller: this.usernameInput,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              InputBox(title: S.of(context).phone, editText: this.phoneInput),
               SizedBox(height: 5),
-              Container(
-                color: Colors.white70,
-                width: this.WIDTH,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Container(
-                      color: Colors.black12,
-                      child: TextField(
-                        obscureText: true,
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        controller: this.passwordInput,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              InputBox(title: S.of(context).username, editText: this.usernameInput),
+              SizedBox(height: 5),
+              InputBox(title: S.of(context).password, editText: this.passwordInput, security: true),
+              SizedBox(height: 5),
+              InputBox(title: S.of(context).re_password, editText: this.rePasswordInput, security: true),
               SizedBox(height: 30),
               Container(
                 width: this.WIDTH,
                 child: RaisedButton(
                   onPressed: () async {
-                    var content = validateInput();
+                    var content = validateInput(context);
                     if (content != '') {
                       showAlertDialog(context, false, content);
                       return;
                     }
 
-                    var url = 'http://api.dev.letstudy.org/user/register';
-                    var response = await http.post(url, body: {
+                    var response = await http.post(API.SIGN_UP, body: {
                       'username': this.usernameInput.text,
                       'email': this.emailInput.text,
                       'phone': this.phoneInput.text,
@@ -199,13 +109,17 @@ class SignUp extends StatelessWidget {
                   color: Colors.black87,
                   textColor: Colors.white,
                   child: Text(
-                    'SIGN UP',
+                    S.of(context).SIGN_UP,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500
                     ),
                   ),
                 ),
+              ),
+              Image(
+                image: AssetImage('assets/images/e-learning.webp'),
+                width: 200,
               ),
             ],
           ),

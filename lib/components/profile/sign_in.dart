@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
+import 'package:advanced_mobile_final_project/widget/input-box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:http/http.dart' as http;
 
 class SignIn extends StatefulWidget {
@@ -17,12 +21,26 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   double WIDTH = 300;
-  var emailInput = new TextEditingController();
+  var usernameInput = new TextEditingController();
   var passwordInput = new TextEditingController();
+
+  String validateInput(BuildContext context) {
+    var content = "";
+
+    if (this.usernameInput.text.isEmpty) {
+      content = S.of(context).message_username_empty;
+    } else if (Validation.hasSpaceCharacter(this.usernameInput.text)) {
+      content = S.of(context).message_username_space;
+    } else if (this.passwordInput.text.length < 6) {
+      content = S.of(context).message_password_short;
+    }
+
+    return content;
+  }
 
   showAlertDialog(BuildContext context, bool isSuccess, String content) {
     Widget okButton = FlatButton(
-      child: Text("OK"),
+      child: Text(S.of(context).btn_ok),
       onPressed:  () {
         if (isSuccess) {
           Navigator.pop(context);
@@ -35,7 +53,7 @@ class _SignInState extends State<SignIn> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("SignIn"),
+      title: Text(S.of(context).sign_in),
       content: Text(content),
       actions: [
         okButton,
@@ -56,7 +74,7 @@ class _SignInState extends State<SignIn> {
     final store = Provider.of<StoreModel>(context);
 
     return Scaffold(
-      appBar: AppBarCustom(name: 'Sign In', avatar: store.avatar),
+      appBar: AppBarCustom(name: S.of(context).sign_in, avatar: store.avatar),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -64,66 +82,22 @@ class _SignInState extends State<SignIn> {
             Image(
               image: AssetImage('assets/images/e-learning.webp')
             ),
-            Container(
-              color: Colors.white70,
-              width: this.WIDTH,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Username (or Email)',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Container(
-                    color: Colors.black12,
-                    child: TextField(
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                      controller: this.emailInput,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            InputBox(title: S.of(context).username, editText: this.usernameInput),
             SizedBox(height: 20),
-            Container(
-              color: Colors.white70,
-              width: this.WIDTH,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Password',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Container(
-                    color: Colors.black12,
-                    child: TextField(
-                      obscureText: true,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                      controller: this.passwordInput,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            InputBox(title: S.of(context).password, editText: this.passwordInput, security: true),
             SizedBox(height: 30),
             Container(
               width: this.WIDTH,
               child: RaisedButton(
                 onPressed: () async {
-                  var url = 'http://api.dev.letstudy.org/user/login';
-                  var response = await http.post(url, body: {
-                    'email': this.emailInput.text,
+                  var content = validateInput(context);
+                  if (content.isNotEmpty) {
+                    showAlertDialog(context, false, content);
+                    return;
+                  }
+
+                  var response = await http.post(API.SIGN_IN, body: {
+                    'email': this.usernameInput.text,
                     'password': this.passwordInput.text
                   });
 
@@ -139,13 +113,14 @@ class _SignInState extends State<SignIn> {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, '/main');
                   } else {
-                    showAlertDialog(context, false, json['message']);
+                    String message = S.of(context).message_sign_in_fail;
+                    showAlertDialog(context, false, message);
                   }
                 },
                 color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
-                  'SIGN IN',
+                  S.of(context).SIGN_IN,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500
@@ -158,12 +133,12 @@ class _SignInState extends State<SignIn> {
               child: RaisedButton(
                 onPressed: () async {
                   var result = await Navigator.pushNamed(context, '/sign-up');
-                  this.emailInput.text = result;
+                  this.usernameInput.text = result;
                 },
                 color: Colors.black87,
                 textColor: Colors.white,
                 child: Text(
-                  'SIGN UP FREE',
+                  S.of(context).SIGN_UP,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500

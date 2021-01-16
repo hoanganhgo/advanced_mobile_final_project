@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'business/share/author/author_detail.dart';
 import 'business/share/course/course_detail.dart';
+import 'generated/l10n.dart';
 import 'ui/list-course-vertical.dart';
 import 'business/share/other/app_bar.dart';
 import 'constant/constant.dart';
@@ -15,7 +16,7 @@ import 'components/profile/sign_in.dart';
 import 'components/profile/sign_up.dart';
 import 'components/search/search_bar.dart';
 import 'model/store_model.dart';
-import 'package:multilanguage/multilanguage.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,11 +37,18 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<StoreModel>(create: (context) => StoreModel()),
       ],
       child: MaterialApp(
-        title: 'E-Learning',
+        title: "E-Learning",
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         home: Main(),
         routes: {
           '/main': (context) => Main(),
@@ -69,8 +77,6 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
-    // Multilanguage.setLanguage(path: Languages.en, context: context);
-    // multilang.get('title');
 
     return Scaffold(
       appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index], avatar: store.avatar) : SearchBar(name: this.tabNames[this.index]),
@@ -91,19 +97,19 @@ class _MainState extends State<Main> {
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
-            title: new Text('Home'),
+            title: new Text(S.of(context).home),
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.file_download),
-            title: new Text('Downloads'),
+            title: new Text(S.of(context).download),
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.apps),
-              title: Text('Browser')
+              title: Text(S.of(context).browser)
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              title: Text('Search')
+              title: Text(S.of(context).search)
           ),
         ],
       ),

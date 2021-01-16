@@ -9,6 +9,8 @@ class Constant {
   static final heightListCourse = 270.0;
   static final courseTextSize = 15.0;
   static final courseTextWeight = FontWeight.w400;
+  static const double BOX_WIDTH = 300;
+  static const double BOX_HEIGHT = 40;
 
   //Color
   static final bgColorCourse = Colors.grey.shade100;

@@ -9,5 +9,5 @@ class API {
   static const String RECOMMEND_COURSE = "http://api.dev.letstudy.org/user/recommend-course";
   static const String CATEGORY = "http://api.dev.letstudy.org/category/all";
   static const String COURSE_DETAIL = "http://api.dev.letstudy.org/course/get-course-info";
-  static const String LESSON = "http://api.dev.letstudy.org/course/detail-with-lesson";
+  static const String LESSON = "http://api.dev.letstudy.org/course/get-course-detail";
 }

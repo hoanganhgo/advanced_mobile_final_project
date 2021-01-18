@@ -2,6 +2,7 @@ import 'package:advanced_mobile_final_project/constant/category-type.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/category_model.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/model/lesson-model.dart';
 
 class Mapping {
   static CourseModel mapToCourseModel(dynamic json) {
@@ -55,5 +56,23 @@ class Mapping {
     var imagePath = CategoryType.getValue(id);
 
     return new CategoryModel(id: id, name: name, imagePath: imagePath);
+  }
+
+  static LessonModel mapToLessonModel(dynamic json) {
+    var id = json["id"];
+    var name = json["name"];
+    var content = json["content"];
+    var videoName = json["videoName"];
+    var videoUrl = json["videoUrl"];
+    var hours = json["hours"] + 0.0;
+
+    id = id == null ? "" : id;
+    name = name == null ? "Unknown" : name;
+    content = content == null ? "Empty" : content;
+    videoName = videoName == null ? "Unknown" : videoName;
+    videoUrl = videoUrl == null ? "" : videoUrl;
+    hours = hours == null ? "0" : hours;
+
+    return new LessonModel(id, name, content, videoName, videoUrl, hours);
   }
 }

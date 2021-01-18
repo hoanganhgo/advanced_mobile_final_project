@@ -36,7 +36,7 @@ class CourseNetwork {
     Map<String, dynamic> json = jsonDecode(response.body);
 
     List<dynamic> list = json['payload'];
-    print(list);
+    // print(list);
 
     if (list == null) {
       return data;
@@ -69,7 +69,7 @@ class CourseNetwork {
 
     Map<String, dynamic> json = jsonDecode(response.body);
     List<dynamic> list = json['payload']["courses"]["data"];
-    print(json);
+    //print(json);
 
     List<CourseModel> data = new List();
 
@@ -110,7 +110,7 @@ class CourseNetwork {
     List<CourseModel> data = new List();
 
     Map<String, dynamic> json = jsonDecode(response.body);
-    print(json);
+    // print(json);
 
     List<dynamic> list = json['payload']["rows"];
 
@@ -126,20 +126,17 @@ class CourseNetwork {
   }
 
   static Future<CourseModel> getCourseDetail(String courseId) async {
-    print(courseId);
     String url = API.COURSE_DETAIL + "/" + courseId;
     var response = await http.get(API.COURSE_DETAIL);
-
-    print("getCourseDetail");
 
     List<CourseModel> data = new List();
 
     Map<String, dynamic> json = jsonDecode(response.body);
-    print(json);
+    // print(json);
 
     List<dynamic> course = json['payload'];
 
-    print(course);
+    // print(course);
 
     return null;
   }

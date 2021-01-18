@@ -39,6 +39,7 @@ dev_dependencies:
   localstorage: ^3.0.6
   flutter_localizations:
     sdk: flutter
+  youtube_player_flutter: ^7.0.0+7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

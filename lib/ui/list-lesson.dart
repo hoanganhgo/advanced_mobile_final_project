@@ -1,17 +1,18 @@
 import 'package:advanced_mobile_final_project/business/service/lesson-service.dart';
+import 'package:advanced_mobile_final_project/model/course_model.dart';
 import 'package:flutter/material.dart';
 
 class ListLesson extends StatelessWidget{
-  String courseId;
+  CourseModel courseModel;
 
-  ListLesson(this.courseId);
+  ListLesson(this.courseModel);
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       body: FutureBuilder<List<Widget>>(
-        future: LessonService.getListLesson(courseId),
+        future: LessonService.getListLesson(courseModel),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
             return  Center(child: Text('Please wait its loading...'));

@@ -15,7 +15,6 @@ class CourseHorizontalWidget extends StatelessWidget {
 
     return RaisedButton(
       onPressed: () {
-        LessonNetwork.getListLesson(this.courseModel.id);
         Navigator.pushNamed(context, '/video-course', arguments: this.courseModel);
       },
       color: Constant.bgColorCourse,

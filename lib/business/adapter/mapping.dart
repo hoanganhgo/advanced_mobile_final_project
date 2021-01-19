@@ -10,7 +10,6 @@ class Mapping {
     var requirement = json['requirement'] == null ? 'None' : json['requirement'][0];
     var imageLink = json['imageUrl'] == null ? "Empty" : json["imageUrl"];
     var videoLink = json['promoVidUrl'] == null ? "Empty" : json['promoVidUrl'];
-    // var videoLink = "https://www.youtube.com/watch?v=r0hjR9GlRZ8";
     var courseName = json['title'] == null ? "Unknown" : json['title'];
     var authorName = json['instructor.user.name'] == null ? "Unknown" : json['instructor.user.name'];
     var updateAt = DateTime.parse(json['updatedAt']);
@@ -26,6 +25,9 @@ class Mapping {
   }
 
   static CourseModel mapToCourseModelForSearch(dynamic json) {
+    print(json);
+    var id = json['id'];
+    // var videoLink = json['promoVidUrl'];
     var imageLink = json['imageUrl'];
     var courseName = json['title'];
     var authorName = json['name'];
@@ -34,7 +36,7 @@ class Mapping {
     var description = json['description'];
     var totalHours = json['totalHours'];
 
-    return new CourseModel(imageLink: imageLink, courseName: courseName, authorName: authorName,
+    return new CourseModel(id: id, imageLink: imageLink, courseName: courseName, authorName: authorName,
         requirement: "", updateAt: updateAt,rates: rates, description: description, totalHours: totalHours);
   }
 

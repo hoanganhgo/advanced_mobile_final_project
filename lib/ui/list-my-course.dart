@@ -1,23 +1,36 @@
 import 'package:advanced_mobile_final_project/business/service/course-service.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
+import 'package:advanced_mobile_final_project/constant/constant.dart';
+import 'package:advanced_mobile_final_project/constant/list-courses-type.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class SeeMoreRecommend extends StatelessWidget{
-  String id;
-  SeeMoreRecommend({this.id});
+class ListMyCourse extends StatelessWidget {
+  ListMyCourse();
 
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
-    Map args = ModalRoute.of(context).settings.arguments;
-    this.id = args['id'];
 
-    return Scaffold(
-      appBar: AppBarCustom(name: "Recommend for you", avatar: store.avatar),
-      body: FutureBuilder<List<Widget>>(
-        future: CourseService.getRecommendCoursesMore(id),
+    if (store.user == null) {
+      return Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 30),
+          height: 50,
+          child: Text("Please Sign in to watch this content",
+            style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey
+            ),),
+        ),
+      );
+    }
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: Constant.heightListCourse,
+      child: FutureBuilder<List<Widget>>(
+        future: CourseService.getMyCourses(store.user.token, ListCourseType.LIST_HORIZONTAL),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
             return  Center(child: Text('Please wait its loading...'));
@@ -26,14 +39,12 @@ class SeeMoreRecommend extends StatelessWidget{
               return Center(child: Text('Error: ${snapshot.error}'));
             else
               return ListView(
-                scrollDirection: Axis.vertical,
+                scrollDirection: Axis.horizontal,
                 children: snapshot.data,
               );  // snapshot.data  :- get your object which is pass from your downloadData() function
           }
         },
-        //children: CourseHorizontal.getListCourses(this.data, context)
       ),
     );
   }
-
 }

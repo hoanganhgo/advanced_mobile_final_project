@@ -10,4 +10,6 @@ class API {
   static const String CATEGORY = "http://api.dev.letstudy.org/category/all";
   static const String COURSE_DETAIL = "http://api.dev.letstudy.org/course/get-course-info";
   static const String LESSON = "http://api.dev.letstudy.org/course/get-course-detail";
+  static const String REGISTER_COURSE = "http://api.dev.letstudy.org/payment/get-free-courses";
+  static const String MY_COURSE = "http://api.dev.letstudy.org/payment";
 }

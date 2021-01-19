@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:advanced_mobile_final_project/business/adapter/mapping.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
@@ -126,20 +127,43 @@ class CourseNetwork {
   }
 
   static Future<CourseModel> getCourseDetail(String courseId) async {
-    String url = API.COURSE_DETAIL + "/" + courseId;
-    var response = await http.get(API.COURSE_DETAIL);
+    String url = API.LESSON + "/" + courseId  + "/" + courseId;
+    var response = await http.get(url);
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+    dynamic courseJson = json['payload'];
+
+    CourseModel data = Mapping.mapToCourseModel(courseJson);
+
+    return data;
+  }
+  
+  static Future<bool> registerCourse(String token, String courseId) async {
+    var response = await http.post(API.REGISTER_COURSE, headers: {
+      'Authorization': 'Bearer $token'
+    }, body: {
+      "courseId": courseId
+    });
+
+    return response.statusCode == 200;
+  }
+
+  static Future<List<CourseModel>> getCourseRegister(String token) async {
+    var response = await http.get(API.MY_COURSE, headers: {
+      'Authorization': 'Bearer $token'
+    });
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+
+    List<dynamic> list = json["payload"];
 
     List<CourseModel> data = new List();
 
-    Map<String, dynamic> json = jsonDecode(response.body);
-    // print(json);
+    for (dynamic courseBasic in list) {
+      data.add(await CourseNetwork.getCourseDetail(courseBasic["courseId"]));
+    }
 
-    List<dynamic> course = json['payload'];
-
-    // print(course);
-
-    return null;
+    return data;
   }
-
-
+  
 }

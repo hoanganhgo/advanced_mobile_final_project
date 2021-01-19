@@ -1,18 +1,20 @@
+import 'package:advanced_mobile_final_project/components/download/video-download.dart';
 import 'package:advanced_mobile_final_project/components/profile/forget-password.dart';
 import 'package:advanced_mobile_final_project/components/search/search-course.dart';
 import 'package:advanced_mobile_final_project/ui/list-course-type.dart';
+import 'package:advanced_mobile_final_project/ui/list-my-course-vertical.dart';
 import 'package:advanced_mobile_final_project/ui/see-more-recommend.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'business/share/author/author_detail.dart';
-import 'business/share/course/course_detail.dart';
+import 'components/video-player/course_detail.dart';
 import 'generated/l10n.dart';
 import 'ui/list-course-vertical.dart';
-import 'business/share/other/app_bar.dart';
+import 'ui/app_bar.dart';
 import 'constant/constant.dart';
 import 'components/browser/browser.dart';
-import 'components/download/empty_download.dart';
+import 'components/download/download.dart';
 import 'components/home/home.dart';
 import 'components/profile/profile.dart';
 import 'components/profile/sign_in.dart';
@@ -21,7 +23,7 @@ import 'components/search/search_bar.dart';
 import 'model/store_model.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+Future<void> main() async {
   runApp(MyApp());
 }
 
@@ -59,11 +61,13 @@ class _MyAppState extends State<MyApp> {
           '/video-course': (context) => CourseDetail(),
           '/login': (context) => SignIn(),
           '/list-course': (context) => ListCourseVertical(),
+          '/list-my-course': (context) => ListMyCourseVertical(),
           '/see-more-recommend': (context) => SeeMoreRecommend(),
           '/list-course-type': (context) => ListCourseType(),
           '/sign-up': (context) => SignUp(),
           '/profile': (context) => Profile(),
-          '/forget-password': (context) => ForgetPassword()
+          '/forget-password': (context) => ForgetPassword(),
+          '/video-download': (context) => VideoDownload()
         },
       ),
     );
@@ -76,7 +80,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  var tabs = [Home(), EmptyDownload(), Browser(), SearchCourse(searchContent: "")];
+  var tabs = [Home(), Download(), Browser(), SearchCourse(searchContent: "")];
   var tabNames = ['Home', 'Download', 'Browser', 'Search'];
   var index = 0;
 

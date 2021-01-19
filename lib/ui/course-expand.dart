@@ -51,7 +51,7 @@ class CourseExpand extends StatelessWidget {
               ),
               Container(
                   height: MediaQuery.of(context).copyWith().size.height - 360,
-                  child: ListLesson(model.id)
+                  child: ListLesson(model)
               )
             ],
           ),

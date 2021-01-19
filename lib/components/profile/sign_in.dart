@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
-import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';

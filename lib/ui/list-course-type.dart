@@ -1,5 +1,5 @@
 import 'package:advanced_mobile_final_project/business/service/course-service.dart';
-import 'package:advanced_mobile_final_project/business/share/other/app_bar.dart';
+import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

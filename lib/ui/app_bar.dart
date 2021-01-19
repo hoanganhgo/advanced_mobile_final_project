@@ -2,7 +2,7 @@ import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constant/constant.dart';
+import '../constant/constant.dart';
 
 class AppBarCustom extends PreferredSize {
   final String name;

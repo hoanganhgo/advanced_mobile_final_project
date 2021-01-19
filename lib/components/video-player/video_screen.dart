@@ -28,6 +28,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   void initState() {
     //Player video mp4
     print("===========> "+this.model.videoLink);
+
     _controller = VideoPlayerController.network(this.model.videoLink);
 
     // Initialize the controller and store the Future for later use.

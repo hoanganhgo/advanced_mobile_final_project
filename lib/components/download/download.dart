@@ -1,23 +1,21 @@
-import 'package:advanced_mobile_final_project/business/service/course-service.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
-import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:provider/provider.dart';
+import 'package:advanced_mobile_final_project/business/service/video-service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SeeMoreRecommend extends StatelessWidget{
-  String id;
-  SeeMoreRecommend({this.id});
+class Download extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _DownloadState();
+  }
+}
+
+class _DownloadState extends State<StatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<StoreModel>(context);
-    Map args = ModalRoute.of(context).settings.arguments;
-    this.id = args['id'];
-
     return Scaffold(
-      appBar: AppBarCustom(name: "Recommend for you", avatar: store.avatar),
       body: FutureBuilder<List<Widget>>(
-        future: CourseService.getRecommendCoursesMore(id),
+        future: VideoService.getVideos(),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
             return  Center(child: Text('Please wait its loading...'));
@@ -35,5 +33,4 @@ class SeeMoreRecommend extends StatelessWidget{
       ),
     );
   }
-
 }

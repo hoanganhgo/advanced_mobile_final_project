@@ -81,4 +81,18 @@ class CourseService {
     List<CourseModel> courses = await CourseNetwork.getCourseByType(id);
     return convertToCourseVertical(courses);
   }
+
+  static Future<List<Widget>> getMyCourses(String token, ListCourseType type) async {
+    List<CourseModel> courses = await CourseNetwork.getCourseRegister(token);
+
+    switch (type) {
+      case ListCourseType.LIST_HORIZONTAL:
+        return convertToCourseHorizontal(courses);
+
+      case ListCourseType.LIST_VERTICAL:
+        return convertToCourseVertical(courses);
+    }
+
+    return List();
+  }
 }

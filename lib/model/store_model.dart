@@ -2,12 +2,17 @@ import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/category_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'course_model.dart';
 
 class StoreModel with ChangeNotifier {
   UserModel user;
   ImageProvider avatar = AssetImage('assets/images/none_avatar.jpg');
+  bool darkMode = false;
+  Color primaryColor = Colors.orange;   //black87   &&    orange
+
+  List<String> myFavors = new List();
 
   List<AuthorModel> _authors = [
     new AuthorModel(name: 'Hacker', avatar: 'assets/images/avatar/anonymous.jpg', numberOfCourses: 5),

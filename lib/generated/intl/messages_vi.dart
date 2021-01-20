@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "message_sign_in_fail" : MessageLookupByLibrary.simpleMessage("Sai tài khoản mật khẩu"),
     "message_username_empty" : MessageLookupByLibrary.simpleMessage("Tên tài khoản không được bỏ trống"),
     "message_username_space" : MessageLookupByLibrary.simpleMessage("Tên tài khoản bao gồm khoản trắng"),
+    "my_language" : MessageLookupByLibrary.simpleMessage("Việt Nam"),
     "password" : MessageLookupByLibrary.simpleMessage("Mật khẩu"),
     "phone" : MessageLookupByLibrary.simpleMessage("Số điện thoại"),
     "re_password" : MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu"),

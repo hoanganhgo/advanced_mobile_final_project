@@ -13,4 +13,8 @@ class API {
   static const String REGISTER_COURSE = "http://api.dev.letstudy.org/payment/get-free-courses";
   static const String MY_COURSE = "http://api.dev.letstudy.org/payment";
   static const String UPDATE_PROFILE = "http://api.dev.letstudy.org/user/update-profile";
+  static const String EXERCISE = "http://api.dev.letstudy.org/exercise/student/list-exercise-lesson";
+  static const String LIKE_COURSE = "http://api.dev.letstudy.org/user/like-course";
+  static const String STATUS_LIKE = "http://api.dev.letstudy.org/user/get-course-like-status";
+  static const String FAVORITE_COURSE = "http://api.dev.letstudy.org/user/get-favorite-courses";
 }

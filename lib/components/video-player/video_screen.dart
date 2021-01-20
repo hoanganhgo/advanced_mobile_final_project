@@ -8,10 +8,11 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   CourseModel model;
-  VideoPlayerScreen({Key key, this.model}) : super(key: key);
+  String lessonId;
+  VideoPlayerScreen({Key key, this.model, this.lessonId}) : super(key: key);
 
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState(model: this.model);
+  _VideoPlayerScreenState createState() => _VideoPlayerScreenState(model: this.model, lessonId: lessonId);
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
@@ -22,12 +23,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   String videoId;
 
   CourseModel model;
-  _VideoPlayerScreenState({this.model});
+  String lessonId;
+  _VideoPlayerScreenState({this.model, this.lessonId});
 
   @override
   void initState() {
     //Player video mp4
-    print("===========> "+this.model.videoLink);
+    //print("===========> "+this.model.videoLink);
+    if (model.videoLink.isEmpty) {
+      model.videoLink = "https://www.youtube.com/watch?v=fq4N0hgOWzU";
+    }
 
     _controller = VideoPlayerController.network(this.model.videoLink);
 
@@ -89,7 +94,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   SizedBox(height: 5),
                   CourseBar(model),
                   Divider(height: 5),
-                  CourseExpand(this.model)
+                  CourseExpand(this.model, lessonId: lessonId,)
                 ]
             )
         ),

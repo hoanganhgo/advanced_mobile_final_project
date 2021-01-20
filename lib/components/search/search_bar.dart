@@ -1,6 +1,7 @@
 import 'package:advanced_mobile_final_project/business/service/search_service.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/constant/constant.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchBar extends PreferredSize {
   final String name;
@@ -14,9 +15,11 @@ class SearchBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
+
     return AppBar(
       title: Text(this.name),
-      backgroundColor: Constant.primaryColor,
+      backgroundColor: store.primaryColor,
       actions: [
         IconButton(
             icon: Icon(Icons.search),

@@ -1,19 +1,21 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/ui/list-exercise.dart';
 import 'package:flutter/material.dart';
 
 import 'list-lesson.dart';
 
 class CourseExpand extends StatelessWidget {
   CourseModel model;
+  String lessonId;
 
-  CourseExpand(this.model);
+  CourseExpand(this.model, {this.lessonId});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).copyWith().size.height - 277,
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(kToolbarHeight),
@@ -29,6 +31,9 @@ class CourseExpand extends StatelessWidget {
                   ),
                   Tab(
                     text: "Lesson",
+                  ),
+                  Tab(
+                    text: "Exercise",
                   ),
                 ],
               ),
@@ -52,6 +57,10 @@ class CourseExpand extends StatelessWidget {
               Container(
                   height: MediaQuery.of(context).copyWith().size.height - 360,
                   child: ListLesson(model)
+              ),
+              Container(
+                  height: MediaQuery.of(context).copyWith().size.height - 360,
+                  child: ListExercise(lessonId)
               )
             ],
           ),

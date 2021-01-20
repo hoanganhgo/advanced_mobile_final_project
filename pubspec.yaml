@@ -46,6 +46,9 @@ dev_dependencies:
   percent_indicator: ^2.1.7+2
   imgur: ^1.1.1
   image_picker: ^0.6.7+21
+  package_info: ^0.4.0+16
+  social_share: ^2.0.5
+  share: ^0.6.5+4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

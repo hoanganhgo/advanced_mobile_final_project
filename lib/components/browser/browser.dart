@@ -1,9 +1,8 @@
-import 'package:advanced_mobile_final_project/business/service/category-service.dart';
-import 'package:advanced_mobile_final_project/business/share/author/author.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/widget/category.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
+import 'package:advanced_mobile_final_project/ui/author/author.dart';
 import 'package:advanced_mobile_final_project/ui/list-category.dart';
+import 'package:advanced_mobile_final_project/ui/list-course-favor.dart';
 import 'package:advanced_mobile_final_project/ui/list-course-recommend.dart';
 import 'package:advanced_mobile_final_project/widget/header-course.dart';
 import 'package:provider/provider.dart';
@@ -49,6 +48,8 @@ class _BrowserState extends State<StatefulWidget> {
           HeaderCourse(title: "Recommend for you", seeMore: this.seeMore),
           ListCourseRecommend(this.id),
           Divider(),
+          HeaderCourse(title: "Favorite Course", seeMore: () {}),
+          ListCourseFavor(),
           Text('Category',
             style: TextStyle(
               fontSize: Constant.titleCourseSize,

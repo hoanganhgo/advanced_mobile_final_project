@@ -37,7 +37,7 @@ class CourseNetwork {
     Map<String, dynamic> json = jsonDecode(response.body);
 
     List<dynamic> list = json['payload'];
-    // print(list);
+    //print(list);
 
     if (list == null) {
       return data;
@@ -87,12 +87,6 @@ class CourseNetwork {
     var url = API.RECOMMEND_COURSE + "/" + id + "/" + limit.toString() +
         "/" + offset.toString();
     var response = await http.get(url);
-
-    // var response = await http.get(API.RECOMMEND_COURSE, headers: {
-    //   "id": "e434a55e-6495-4caf-b9a3-d51946885162",
-    //   "limit": "10",
-    //   "offset": "1"
-    // });
 
     return _processDataCourses(response);
   }
@@ -165,5 +159,52 @@ class CourseNetwork {
 
     return data;
   }
-  
+
+  static Future<bool> likeCourse(String token, String courseId) async {
+    var response = await http.post(API.LIKE_COURSE,
+        headers: {
+          'Authorization': 'Bearer $token'
+        },
+        body: {
+          "courseId": courseId
+        });
+
+    return response.statusCode == 200;
+  }
+
+  static Future<bool> statusLikeCourse(String token, String courseId) async {
+    var url = API.STATUS_LIKE + "/" + courseId;
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer $token'
+    });
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+
+    dynamic status = json["likeStatus"];
+
+    return status == true;
+  }
+
+  static Future<List<CourseModel>> getFavoriteCourses(String token) async {
+    var response = await http.get(API.FAVORITE_COURSE, headers: {
+      'Authorization': 'Bearer $token'
+    });
+
+    List<CourseModel> data = new List();
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+
+    List<dynamic> list = json['payload'];
+    // print(list);
+
+    if (list == null) {
+      return data;
+    }
+
+    list.forEach((course) {
+      data.add(Mapping.mapToCourseModelV2(course));
+    });
+
+    return data;
+  }
 }

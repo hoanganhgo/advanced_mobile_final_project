@@ -119,6 +119,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       this.phoneNumber.text, avatarLink);
 
                   store.user.avatar = avatarLink;
+                  store.avatar = NetworkImage(store.user.avatar);
                   store.user.name = this.nickName.text;
                   store.user.phone = this.phoneNumber.text;
 

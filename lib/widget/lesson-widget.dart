@@ -16,18 +16,21 @@ class LessonWidget extends StatelessWidget {
       child: RaisedButton(
         color: Colors.grey.shade100,
         onPressed: () {
-          if (model.videoUrl.isEmpty) {
-            AlertDialogBasic(title: "Lesson", content: "Video is invalid", actions: [
-              FlatButton(onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("OK"))
-            ]).show(context);
-            return;
-          }
+          // if (model.videoUrl.isEmpty) {
+          //   AlertDialogBasic(title: "Lesson", content: "Video is invalid", actions: [
+          //     FlatButton(onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //     child: Text("OK"))
+          //   ]).show(context);
+          //   return;
+          // }
           Navigator.pop(context);
           this.courseModel.videoLink = model.videoUrl;
-          Navigator.pushNamed(context, '/video-course', arguments: this.courseModel);
+          Navigator.pushNamed(context, '/video-course', arguments: {
+            'course': this.courseModel,
+            'exercise': model.id
+          });
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -74,7 +74,7 @@ class Profile extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/update-profile');
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
                   "UPDATE PROFILE",
@@ -94,7 +94,7 @@ class Profile extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.pushReplacementNamed(context, '/main');
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
                   "SIGN OUT",

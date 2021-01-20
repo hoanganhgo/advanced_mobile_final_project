@@ -4,8 +4,10 @@ import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/generated/l10n.dart';
+import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/widget/input-box.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -69,6 +71,8 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<StoreModel>(context);
+
     return Scaffold(
         appBar: AppBarCustom(name: S.of(context).sign_up, avatar: AssetImage('assets/images/none_avatar.jpg')),
         body: Center(
@@ -106,7 +110,7 @@ class SignUp extends StatelessWidget {
                     Map<String, dynamic> message = jsonDecode(response.body);
                     showAlertDialog(context, response.statusCode == 200, message['message']);
                     },
-                  color: Colors.black87,
+                  color: store.primaryColor,
                   textColor: Colors.white,
                   child: Text(
                     S.of(context).SIGN_UP,

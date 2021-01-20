@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
+import 'package:advanced_mobile_final_project/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/widget/alert-dialog.dart';
 import 'package:advanced_mobile_final_project/widget/input-box.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class ForgetPassword extends StatelessWidget {
                     Map<String, dynamic> json = jsonDecode(response.body);
                     //print(json);
                   },
-                  color: Colors.black87,
+                  color: store.primaryColor,
                   textColor: Colors.white,
                   child: Text(
                     S.of(context).send_email,

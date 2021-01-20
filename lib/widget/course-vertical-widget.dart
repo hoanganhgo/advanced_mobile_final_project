@@ -16,7 +16,10 @@ class CourseVerticalWidget extends StatelessWidget {
       onPressed: () async {
         print("press widget:" + this.course.id);
         this.course = await CourseNetwork.getCourseDetail(this.course.id);
-        Navigator.pushNamed(context, '/video-course', arguments: course);
+        Navigator.pushNamed(context, '/video-course', arguments: {
+          'course': course,
+          'exercise': ""
+        });
       },
       color: Constant.bgColorCourse,
       child: CourseVertical(course),

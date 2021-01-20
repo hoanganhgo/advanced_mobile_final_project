@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
+import 'package:advanced_mobile_final_project/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/widget/input-box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -115,7 +115,7 @@ class _SignInState extends State<SignIn> {
                     showAlertDialog(context, false, message);
                   }
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
                   S.of(context).SIGN_IN,
@@ -133,7 +133,7 @@ class _SignInState extends State<SignIn> {
                   var result = await Navigator.pushNamed(context, '/sign-up');
                   this.emailInput.text = result;
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
                   S.of(context).SIGN_UP,
@@ -150,7 +150,7 @@ class _SignInState extends State<SignIn> {
                 onPressed: () async {
                   Navigator.pushNamed(context, '/forget-password');
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
                   "FORGET PASSWORD",

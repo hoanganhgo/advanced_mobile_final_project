@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "message_sign_in_fail" : MessageLookupByLibrary.simpleMessage("Username or Password is incorrect"),
     "message_username_empty" : MessageLookupByLibrary.simpleMessage("Username is empty"),
     "message_username_space" : MessageLookupByLibrary.simpleMessage("Username must not contain space character"),
+    "my_language" : MessageLookupByLibrary.simpleMessage("English"),
     "password" : MessageLookupByLibrary.simpleMessage("Password"),
     "phone" : MessageLookupByLibrary.simpleMessage("Phone"),
     "re_password" : MessageLookupByLibrary.simpleMessage("Re-Password"),

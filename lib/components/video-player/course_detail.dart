@@ -14,7 +14,9 @@ class _CourseDetailState extends State<CourseDetail> {
 
   @override
   Widget build(BuildContext context) {
-    CourseModel model = ModalRoute.of(context).settings.arguments;
-    return VideoPlayerScreen(model: model);
+    Map map = ModalRoute.of(context).settings.arguments;
+    CourseModel model = map["course"];
+    var lessonId = map["exercise"];
+    return VideoPlayerScreen(model: model, lessonId: lessonId);
   }
 }

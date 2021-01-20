@@ -95,4 +95,10 @@ class CourseService {
 
     return List();
   }
+
+  static Future<List<Widget>> getFavoriteCourses(String token) async {
+    List<CourseModel> courses = await CourseNetwork.getFavoriteCourses(token);
+
+    return convertToCourseHorizontal(courses);
+  }
 }

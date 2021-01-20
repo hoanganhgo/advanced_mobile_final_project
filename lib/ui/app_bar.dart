@@ -1,8 +1,8 @@
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
-import '../constant/constant.dart';
 
 class AppBarCustom extends PreferredSize {
   final String name;
@@ -20,7 +20,7 @@ class AppBarCustom extends PreferredSize {
 
     return AppBar(
       title: Text(this.name),
-      backgroundColor: Constant.primaryColor,
+      backgroundColor: store.primaryColor,
       actions: [
         FlatButton(
             child: CircleAvatar(
@@ -37,9 +37,11 @@ class AppBarCustom extends PreferredSize {
             },
         ),
         IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: Icon(Icons.settings),
             onPressed: () {
-
+              if (this.name != "Setting" && this.name != S.current.sign_in) {
+                Navigator.pushNamed(context, '/setting');
+              }
             })
       ],
     );

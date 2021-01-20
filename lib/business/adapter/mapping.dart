@@ -2,6 +2,7 @@ import 'package:advanced_mobile_final_project/constant/category-type.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/category_model.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/model/exercise-model.dart';
 import 'package:advanced_mobile_final_project/model/lesson-model.dart';
 
 class Mapping {
@@ -12,16 +13,37 @@ class Mapping {
     var videoLink = json['promoVidUrl'] == null ? "Empty" : json['promoVidUrl'];
     var courseName = json['title'] == null ? "Unknown" : json['title'];
     var authorName = json['instructor.user.name'] == null ? "Unknown" : json['instructor.user.name'];
-    var updateAt = DateTime.parse(json['updatedAt']);
+    var updateAt = json['updatedAt'];
+    updateAt = updateAt == null ? DateTime.now() : DateTime.parse(updateAt);
     var rates = (json['ratedNumber']);
-    var description = json['description'];
-    var totalHours = json['totalHours'] + 0.0;
+    var description = json['description'] == null ? "" : json['description'];
+    var totalHours = (json['totalHours'] == null ? 0.0 : json['totalHours'])  + 0.0;
     var learnWhat = json["learnWhat"];
     description = description + "\n" + learnWhat.toString();
 
     return new CourseModel(id: id, imageLink: imageLink, videoLink: videoLink,
     courseName: courseName, authorName: authorName,requirement: requirement,
     updateAt: updateAt,rates: rates, description: description, totalHours: totalHours);
+  }
+
+  static CourseModel mapToCourseModelV2(dynamic json) {
+    var id = json['id'];
+    var requirement = json['requirement'] == null ? 'None' : json['requirement'][0];
+    var imageLink = json['courseImage'] == null ? "Empty" : json["courseImage"];
+    var videoLink = json['promoVidUrl'] == null ? "Empty" : json['promoVidUrl'];
+    var courseName = json['courseTitle'] == null ? "Unknown" : json['courseTitle'];
+    var authorName = json['instructorName'] == null ? "Unknown" : json['instructorName'];
+    var updateAt = json['updatedAt'];
+    updateAt = updateAt == null ? DateTime.now() : DateTime.parse(updateAt);
+    var rates = json['ratedNumber'] == null ? 0 : json['ratedNumber'];
+    var description = json['description'] == null ? "" : json['description'];
+    var totalHours = (json['totalHours'] == null ? 0.0 : json['totalHours'])  + 0.0;
+    var learnWhat = json["learnWhat"];
+    description = description + "\n" + learnWhat.toString();
+
+    return new CourseModel(id: id, imageLink: imageLink, videoLink: videoLink,
+        courseName: courseName, authorName: authorName,requirement: requirement,
+        updateAt: updateAt,rates: rates, description: description, totalHours: totalHours);
   }
 
   static CourseModel mapToCourseModelForSearch(dynamic json) {
@@ -76,5 +98,13 @@ class Mapping {
     hours = hours == null ? "0" : hours;
 
     return new LessonModel(id, name, content, videoName, videoUrl, hours);
+  }
+
+  static ExerciseModel mapToExerciseModel(dynamic json) {
+    var id = json["id"];
+    var numberOfQuestion = json["numberQuestion"].toString();
+    var title = json["title"];
+
+    return new ExerciseModel(id, numberOfQuestion, title);
   }
 }

@@ -15,7 +15,10 @@ class CourseHorizontalWidget extends StatelessWidget {
 
     return RaisedButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/video-course', arguments: this.courseModel);
+        Navigator.pushNamed(context, '/video-course', arguments: {
+          'course': this.courseModel,
+          'exercise': ''
+        });
       },
       color: Constant.bgColorCourse,
       child: CourseHorizontal(this.courseModel),

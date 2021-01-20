@@ -2,18 +2,18 @@ import 'package:advanced_mobile_final_project/components/download/video-download
 import 'package:advanced_mobile_final_project/components/profile/forget-password.dart';
 import 'package:advanced_mobile_final_project/components/profile/update-profile.dart';
 import 'package:advanced_mobile_final_project/components/search/search-course.dart';
+import 'package:advanced_mobile_final_project/components/setting/setting.dart';
 import 'package:advanced_mobile_final_project/ui/list-course-type.dart';
 import 'package:advanced_mobile_final_project/ui/list-my-course-vertical.dart';
 import 'package:advanced_mobile_final_project/ui/see-more-recommend.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'business/share/author/author_detail.dart';
 import 'components/video-player/course_detail.dart';
 import 'generated/l10n.dart';
+import 'ui/author/author_detail.dart';
 import 'ui/list-course-vertical.dart';
 import 'ui/app_bar.dart';
-import 'constant/constant.dart';
 import 'components/browser/browser.dart';
 import 'components/download/download.dart';
 import 'components/home/home.dart';
@@ -69,7 +69,8 @@ class _MyAppState extends State<MyApp> {
           '/profile': (context) => Profile(),
           '/forget-password': (context) => ForgetPassword(),
           '/video-download': (context) => VideoDownload(),
-          '/update-profile': (context) => UpdateProfile()
+          '/update-profile': (context) => UpdateProfile(),
+          '/setting': (context) => Setting()
         },
       ),
     );
@@ -93,10 +94,10 @@ class _MainState extends State<Main> {
     return Scaffold(
       appBar: index!=3 ? AppBarCustom(name: this.tabNames[this.index], avatar: store.avatar) : SearchBar(name: this.tabNames[this.index]),
       body: tabs[this.index],
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade50,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Constant.primaryColor,
+        unselectedItemColor: store.primaryColor,
         currentIndex: this.index, // this will be set when a new tab is tapped
         onTap: (int index) {
           setState(() {

@@ -12,4 +12,5 @@ class API {
   static const String LESSON = "http://api.dev.letstudy.org/course/get-course-detail";
   static const String REGISTER_COURSE = "http://api.dev.letstudy.org/payment/get-free-courses";
   static const String MY_COURSE = "http://api.dev.letstudy.org/payment";
+  static const String UPDATE_PROFILE = "http://api.dev.letstudy.org/user/update-profile";
 }

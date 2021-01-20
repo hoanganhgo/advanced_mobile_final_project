@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/components/download/video-download.dart';
 import 'package:advanced_mobile_final_project/components/profile/forget-password.dart';
+import 'package:advanced_mobile_final_project/components/profile/update-profile.dart';
 import 'package:advanced_mobile_final_project/components/search/search-course.dart';
 import 'package:advanced_mobile_final_project/ui/list-course-type.dart';
 import 'package:advanced_mobile_final_project/ui/list-my-course-vertical.dart';
@@ -67,7 +68,8 @@ class _MyAppState extends State<MyApp> {
           '/sign-up': (context) => SignUp(),
           '/profile': (context) => Profile(),
           '/forget-password': (context) => ForgetPassword(),
-          '/video-download': (context) => VideoDownload()
+          '/video-download': (context) => VideoDownload(),
+          '/update-profile': (context) => UpdateProfile()
         },
       ),
     );

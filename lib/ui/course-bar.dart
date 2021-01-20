@@ -111,38 +111,49 @@ class _CourseBarState extends State<CourseBar> {
             ),
           ],
         ),
-        IconButton(
-            icon: Icon(Icons.check_box),
-            onPressed: () async {
-              CourseNetwork.getCourseRegister(store.user.token);
+        Stack(
+          children: [
+            IconButton(
+                icon: Icon(Icons.check_box),
+                onPressed: () async {
+                  CourseNetwork.getCourseRegister(store.user.token);
 
-              if (store.user == null) {
-                AlertDialogBasic(title: "Message", content: "You must login to register this course"
-                    , actions: [
-                  FlatButton(onPressed: () {
-                    Navigator.pop(context);
-                  },
-                      child: Text("OK"))
-                ]).show(context);
-                return;
-              }
+                  if (store.user == null) {
+                    AlertDialogBasic(title: "Message", content: "You must login to register this course"
+                        , actions: [
+                          FlatButton(onPressed: () {
+                            Navigator.pop(context);
+                          },
+                              child: Text("OK"))
+                        ]).show(context);
+                    return;
+                  }
 
-              bool status = await CourseNetwork.registerCourse(store.user.token, model.id);
+                  bool status = await CourseNetwork.registerCourse(store.user.token, model.id);
 
-              String message = "";
-              if (status) {
-                message = "You have successfully registered for the course";
-              } else {
-                message = "You have already signed up for this course";
-              }
+                  String message = "";
+                  if (status) {
+                    message = "You have successfully registered for the course";
+                  } else {
+                    message = "You have already signed up for this course";
+                  }
 
-              AlertDialogBasic(title: "Message", content: message, actions: [
-                FlatButton(onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("OK"))
-              ]).show(context);
-            }),
+                  AlertDialogBasic(title: "Message", content: message, actions: [
+                    FlatButton(onPressed: () {
+                      Navigator.pop(context);
+                    },
+                        child: Text("OK"))
+                  ]).show(context);
+                }),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 34, 0, 0),
+              child: Text("Subscribe",
+              style: TextStyle(
+                fontSize: 12
+              )),
+            )
+          ],
+        ),
         Stack(
           children: [
             CircularPercentIndicator(

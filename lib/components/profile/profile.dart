@@ -71,7 +71,24 @@ class Profile extends StatelessWidget {
             Container(
               width: Constant.BUTTON_WIDTH,
               child: RaisedButton(
-                onPressed: () async {
+                onPressed: () {
+                  Navigator.pushNamed(context, '/update-profile');
+                },
+                color: Colors.black87,
+                textColor: Colors.white,
+                child: Text(
+                  "UPDATE PROFILE",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: Constant.BUTTON_WIDTH,
+              child: RaisedButton(
+                onPressed: () {
                   store.user = null;
                   store.avatar = AssetImage('assets/images/none_avatar.jpg');
                   Navigator.pop(context);

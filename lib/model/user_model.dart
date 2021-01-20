@@ -20,4 +20,16 @@ class UserModel {
   String get email => _email;
 
   String get id => _id;
+
+  set phone(String value) {
+    _phone = value;
+  }
+
+  set name(String value) {
+    _name = value;
+  }
+
+  set avatar(String value) {
+    _avatar = value;
+  }
 }

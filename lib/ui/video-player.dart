@@ -29,10 +29,12 @@ class _VideoScreenState extends State<VideoPlayerUI> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   // If the VideoPlayerController has finished initialization, use
                   // the data it provides to limit the aspect ratio of the video.
-                  return AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
-                    child: VideoPlayer(_controller),
+                  return Center(
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      // Use the VideoPlayer widget to display the video.
+                      child: VideoPlayer(_controller),
+                    ),
                   );
                 } else {
                   // If the VideoPlayerController is still initializing, show a
@@ -44,26 +46,26 @@ class _VideoScreenState extends State<VideoPlayerUI> {
             height: 200,
           ),
           Container(
-            color: Colors.transparent,
-            height: 100,
-            width: 100,
-            margin: EdgeInsets.symmetric(vertical: 50, horizontal: 112),
-            child: FlatButton(onPressed: () {
-              // Wrap the play or pause in a call to `setState`. This ensures the
-              // correct icon is shown.
-              setState(() {
-                // If the video is playing, pause it.
-                if (_controller.value.isPlaying) {
-                  _controller.pause();
-                } else {
-                  // If the video is paused, play it.
-                  _controller.play();
-                }
-              });
-            },
-              color: Colors.transparent,
-              child: Icon(Icons.play_arrow,
-                  color: _controller.value.isPlaying ? Colors.transparent : Colors.black),
+            height: 200,
+            child: Center(
+              child: FlatButton(
+                onPressed: () {
+                // Wrap the play or pause in a call to `setState`. This ensures the
+                // correct icon is shown.
+                setState(() {
+                  // If the video is playing, pause it.
+                  if (_controller.value.isPlaying) {
+                    _controller.pause();
+                  } else {
+                    // If the video is paused, play it.
+                    _controller.play();
+                  }
+                });
+                },
+                color: Colors.transparent,
+                child: Icon(Icons.play_arrow,
+                color: _controller.value.isPlaying ? Colors.transparent : Colors.black),
+              ),
             ),
           )
         ],

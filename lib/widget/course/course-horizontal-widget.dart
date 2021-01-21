@@ -1,6 +1,5 @@
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
-import 'package:advanced_mobile_final_project/network/lesson-network.dart';
 import 'package:flutter/material.dart';
 
 import 'course-horizontal.dart';

@@ -17,4 +17,5 @@ class API {
   static const String LIKE_COURSE = "http://api.dev.letstudy.org/user/like-course";
   static const String STATUS_LIKE = "http://api.dev.letstudy.org/user/get-course-like-status";
   static const String FAVORITE_COURSE = "http://api.dev.letstudy.org/user/get-favorite-courses";
+  static const String RATE_COURSE = "http://api.dev.letstudy.org/course/rating-course";
 }

@@ -1,10 +1,11 @@
 import 'package:advanced_mobile_final_project/constant/constant.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/ui/author/author.dart';
+import 'package:advanced_mobile_final_project/ui/course/list-course-favor.dart';
+import 'package:advanced_mobile_final_project/ui/course/list-course-recommend.dart';
 import 'package:advanced_mobile_final_project/ui/list-category.dart';
-import 'package:advanced_mobile_final_project/ui/list-course-favor.dart';
-import 'package:advanced_mobile_final_project/ui/list-course-recommend.dart';
-import 'package:advanced_mobile_final_project/widget/header-course.dart';
+import 'package:advanced_mobile_final_project/widget/course/header-course.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -45,12 +46,12 @@ class _BrowserState extends State<StatefulWidget> {
       margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
       child: ListView(
         children: [
-          HeaderCourse(title: "Recommend for you", seeMore: this.seeMore),
+          HeaderCourse(title: S.current.recommend, seeMore: this.seeMore),
           ListCourseRecommend(this.id),
           Divider(),
-          HeaderCourse(title: "Favorite Course", seeMore: () {}),
+          HeaderCourse(title: S.current.favorite, seeMore: () {}),
           ListCourseFavor(),
-          Text('Category',
+          Text(S.current.category,
             style: TextStyle(
               fontSize: Constant.titleCourseSize,
               fontWeight: Constant.titleCourseWeight,
@@ -62,7 +63,7 @@ class _BrowserState extends State<StatefulWidget> {
             child: ListCategory(),
           ),
           Divider(),
-          Text('Top Authors',
+          Text(S.current.top_authors,
             style: TextStyle(
               fontSize: Constant.titleCourseSize,
               fontWeight: Constant.titleCourseWeight,

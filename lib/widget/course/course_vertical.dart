@@ -78,8 +78,8 @@ class CourseVertical extends StatelessWidget {
             Row(
               children: [
                 RatingBar.builder(
-                  initialRating: 5,
-                  minRating: 1,
+                  initialRating: model.getStar(),
+                  minRating: 0,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
@@ -90,9 +90,6 @@ class CourseVertical extends StatelessWidget {
                     color: Colors.amber,
                     size: 1,
                   ),
-                  // onRatingUpdate: (rating) {
-                  //   print(rating);
-                  // },
                 ),
                 Text(' (' + this.model.rates.toString() + ')',
                     style: TextStyle(

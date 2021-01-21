@@ -1,6 +1,5 @@
 import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +26,7 @@ class AppBarCustom extends PreferredSize {
               backgroundImage: this.avatar,
             ),
             onPressed: () {
-              if (this.name != 'Sign In' && this.name != 'Profile') {
+              if (this.name != S.current.sign_in && this.name != S.current.profile) {
                 if (store.user == null) {
                   Navigator.pushNamed(context, '/login');
                 } else{
@@ -39,7 +38,7 @@ class AppBarCustom extends PreferredSize {
         IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              if (this.name != "Setting" && this.name != S.current.sign_in) {
+              if (this.name != S.current.setting && this.name != S.current.sign_in) {
                 Navigator.pushNamed(context, '/setting');
               }
             })

@@ -153,7 +153,7 @@ class _SignInState extends State<SignIn> {
                 color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
-                  "FORGET PASSWORD",
+                  S.current.FORGET_PASSWORD,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500

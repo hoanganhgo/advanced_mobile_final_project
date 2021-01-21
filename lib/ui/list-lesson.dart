@@ -15,7 +15,15 @@ class ListLesson extends StatelessWidget{
         future: LessonService.getListLesson(courseModel),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
-            return  Center(child: Text('Please wait its loading...'));
+            return  Center(
+                child: Container(
+                  height: 50.0,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                )
+            );
           }else{
             if (snapshot.hasError)
               return Center(child: Text('Error: ${snapshot.error}'));

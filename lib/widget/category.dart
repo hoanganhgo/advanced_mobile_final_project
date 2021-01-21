@@ -1,5 +1,4 @@
 import 'package:advanced_mobile_final_project/model/category_model.dart';
-import 'package:advanced_mobile_final_project/network/course-network.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {

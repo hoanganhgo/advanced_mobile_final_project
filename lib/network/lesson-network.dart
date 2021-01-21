@@ -14,7 +14,7 @@ class LessonNetwork {
     Map<String, dynamic> json = jsonDecode(response.body);
 
     List<dynamic> list = json['payload']["section"][0]["lesson"];
-    print(list);
+    //print(list);
 
     List<LessonModel> data = new List();
 

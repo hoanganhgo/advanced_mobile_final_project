@@ -1,4 +1,3 @@
-import 'package:advanced_mobile_final_project/business/service/video-service.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/video-model.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class _VideoDownloadState extends State<VideoDownload> {
 
   void createState() {
     //Player video mp4
-    print("===========> " + this.model.path);
+    //print("===========> " + this.model.path);
 
     _controller = VideoPlayerController.network(this.model.path);
 

@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/business/service/author-service.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 
 class SearchAll extends StatefulWidget {
   SearchAll({Key key, this.searchContent}) : super(key: key);
@@ -42,7 +43,7 @@ class _SearchAllState extends State<SearchAll> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text("Not Found",
+        Text(S.current.not_found,
           style: TextStyle(
             fontSize: fontSize,
             color: Colors.grey

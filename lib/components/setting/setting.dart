@@ -6,7 +6,6 @@ import 'package:advanced_mobile_final_project/widget/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:package_info/package_info.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Setting extends StatefulWidget {
   @override
@@ -41,7 +40,7 @@ class _SettingState extends State<Setting> {
           color: store.primaryColor,
           textColor: Colors.white,
           child: Text(
-            "SIGN IN",
+            S.current.SIGN_IN,
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500
@@ -62,7 +61,7 @@ class _SettingState extends State<Setting> {
           color: store.primaryColor,
           textColor: Colors.white,
           child: Text(
-            "SIGN OUT",
+            S.current.SIGN_OUT,
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500
@@ -78,7 +77,7 @@ class _SettingState extends State<Setting> {
     final store = Provider.of<StoreModel>(context);
 
     return Scaffold(
-      appBar: AppBarCustom(name: "Setting", avatar: store.avatar),
+      appBar: AppBarCustom(name: S.current.setting, avatar: store.avatar),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 30, horizontal: 40),
         child: Column(
@@ -90,7 +89,7 @@ class _SettingState extends State<Setting> {
                   children: [
                     Icon(Icons.brightness_2),
                     SizedBox(width: 10),
-                    Text("Dark mode",
+                    Text(S.current.dark_mode,
                     style: TextStyle(
                       fontSize: 18
                     ),),
@@ -122,7 +121,7 @@ class _SettingState extends State<Setting> {
                   children: [
                     Icon(Icons.language),
                     SizedBox(width: 10),
-                    Text("Language",
+                    Text(S.current.language,
                       style: TextStyle(
                           fontSize: 18
                       ),),
@@ -132,8 +131,8 @@ class _SettingState extends State<Setting> {
                   color: Colors.grey.shade200,
                     onPressed: () async {
                       AlertDialogBasic(
-                        title: "Change Language",
-                        content: "Please choose your language",
+                        title: S.current.change_language,
+                        content: S.current.choose_language,
                         actions: [
                           FlatButton(
                               onPressed: () async {
@@ -165,7 +164,7 @@ class _SettingState extends State<Setting> {
                   children: [
                     Icon(Icons.contact_mail),
                     SizedBox(width: 10),
-                    Text("Contact",
+                    Text(S.current.contact,
                       style: TextStyle(
                           fontSize: 18
                       ),),
@@ -175,19 +174,18 @@ class _SettingState extends State<Setting> {
                     color: Colors.grey.shade200,
                     onPressed: () {
                       AlertDialogBasic(
-                        title: "About me",
-                        content: "Full name: Luong Hoang Anh\nMSSV: 1712276\n"
-                            "University: HCMUS\nEmail: anhluong660@gmail.com",
+                        title: S.current.about_me,
+                        content: S.current.my_info,
                         actions: [
                           FlatButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text("OK"))
+                              child: Text(S.current.btn_ok))
                         ]
                       ).show(context);
                     },
-                    child: Text("About me"))
+                    child: Text(S.current.about_me))
               ],
             ),
             SizedBox(height: 20),
@@ -198,7 +196,7 @@ class _SettingState extends State<Setting> {
                   children: [
                     Icon(Icons.mobile_friendly),
                     SizedBox(width: 10),
-                    Text("Version",
+                    Text(S.current.version,
                       style: TextStyle(
                           fontSize: 18
                       ),),

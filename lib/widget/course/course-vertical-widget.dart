@@ -14,7 +14,6 @@ class CourseVerticalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: () async {
-        print("press widget:" + this.course.id);
         this.course = await CourseNetwork.getCourseDetail(this.course.id);
         Navigator.pushNamed(context, '/video-course', arguments: {
           'course': course,

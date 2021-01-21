@@ -1,6 +1,7 @@
 import 'package:advanced_mobile_final_project/constant/category-type.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/category_model.dart';
+import 'package:advanced_mobile_final_project/model/comment-model.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
 import 'package:advanced_mobile_final_project/model/exercise-model.dart';
 import 'package:advanced_mobile_final_project/model/lesson-model.dart';
@@ -10,7 +11,7 @@ class Mapping {
     var id = json['id'];
     var requirement = json['requirement'] == null ? 'None' : json['requirement'][0];
     var imageLink = json['imageUrl'] == null ? "Empty" : json["imageUrl"];
-    var videoLink = json['promoVidUrl'] == null ? "Empty" : json['promoVidUrl'];
+    var videoLink = json['promoVidUrl'] == null ? "" : json['promoVidUrl'];
     var courseName = json['title'] == null ? "Unknown" : json['title'];
     var authorName = json['instructor.user.name'] == null ? "Unknown" : json['instructor.user.name'];
     var updateAt = json['updatedAt'];
@@ -30,7 +31,7 @@ class Mapping {
     var id = json['id'];
     var requirement = json['requirement'] == null ? 'None' : json['requirement'][0];
     var imageLink = json['courseImage'] == null ? "Empty" : json["courseImage"];
-    var videoLink = json['promoVidUrl'] == null ? "Empty" : json['promoVidUrl'];
+    var videoLink = json['promoVidUrl'] == null ? "" : json['promoVidUrl'];
     var courseName = json['courseTitle'] == null ? "Unknown" : json['courseTitle'];
     var authorName = json['instructorName'] == null ? "Unknown" : json['instructorName'];
     var updateAt = json['updatedAt'];
@@ -106,5 +107,14 @@ class Mapping {
     var title = json["title"];
 
     return new ExerciseModel(id, numberOfQuestion, title);
+  }
+
+  static CommentModel mapToCommentModel(dynamic json) {
+    var content = json["content"] == null ? "" : json["content"];
+    var avatar = json["user"]["avatar"];
+    var name = json["user"]["name"] == null ? "NO_NAME" : json["user"]["name"];
+    var star = json["averagePoint"] + 0.0 > 5 ? 5.0 : json["averagePoint"] + 0.0;
+
+    return new CommentModel(name, avatar, star, content);
   }
 }

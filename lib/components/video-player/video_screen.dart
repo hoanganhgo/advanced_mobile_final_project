@@ -1,6 +1,6 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
-import 'package:advanced_mobile_final_project/ui/course-bar.dart';
-import 'package:advanced_mobile_final_project/ui/course-expand.dart';
+import 'package:advanced_mobile_final_project/ui/course/course-bar.dart';
+import 'package:advanced_mobile_final_project/ui/course/course-expand.dart';
 import 'package:advanced_mobile_final_project/ui/video-player.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -87,6 +87,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 children: [
                   this.getVideoPlayer(),
                   Text(this.model.courseName,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    softWrap: true,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,

@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:advanced_mobile_final_project/business/adapter/mapping.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
+import 'package:advanced_mobile_final_project/model/comment-model.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +31,7 @@ class CourseNetwork {
     return _processDataCourses(response);
   }
 
-  static List<CourseModel> _processDataCourses(dynamic response) {
+  static Future<List<CourseModel>> _processDataCourses(dynamic response) async {
     List<CourseModel> data = new List();
 
     Map<String, dynamic> json = jsonDecode(response.body);
@@ -43,9 +43,18 @@ class CourseNetwork {
       return data;
     }
 
-    list.forEach((course) {
-      data.add(Mapping.mapToCourseModel(course));
-    });
+    for (dynamic course in list) {
+      CourseModel courseModel = Mapping.mapToCourseModel(course);
+      Map<String, dynamic> json2 = await getDetailJson(courseModel.id);
+
+      if (json2['payload'] == null) {
+        continue;
+      }
+
+      courseModel.comments = getComments(json2);
+      courseModel.sumFinish = getSumLessonFinish(json2);
+      data.add(courseModel);
+    }
 
     return data;
   }
@@ -74,9 +83,13 @@ class CourseNetwork {
 
     List<CourseModel> data = new List();
 
-    list.forEach((course) {
-      data.add(Mapping.mapToCourseModelForSearch(course));
-    });
+    for (dynamic course in list) {
+      CourseModel courseModel = Mapping.mapToCourseModelForSearch(course);
+      Map<String, dynamic> json = await getDetailJson(courseModel.id);
+      courseModel.comments = getComments(json);
+      courseModel.sumFinish = getSumLessonFinish(json);
+      data.add(courseModel);
+    }
 
     return data;
   }
@@ -94,18 +107,27 @@ class CourseNetwork {
   static Future<List> getCourseByType(String id) async {
     var url = "http://api.dev.letstudy.org/course/search";
 
-    int offset = id.hashCode % 10;
-
-    var response = await http.post(url, body: {
+    Map<String, dynamic> map = {
       "keyword": "",
-      "limit": '5',
-      "offset": offset.toString()
+      "opt": {
+        "category": [
+          id
+        ]
+      },
+      "limit": '10',
+      "offset": '0'
+    };
+
+    final String encodedData = jsonEncode(map);
+
+    var response = await http.post(url, body: encodedData, headers: {
+      "content-type": "application/json"
     });
 
     List<CourseModel> data = new List();
 
     Map<String, dynamic> json = jsonDecode(response.body);
-    // print(json);
+    print(json);
 
     List<dynamic> list = json['payload']["rows"];
 
@@ -113,9 +135,13 @@ class CourseNetwork {
       return data;
     }
 
-    list.forEach((course) {
-      data.add(Mapping.mapToCourseModel(course));
-    });
+    for (dynamic course in list) {
+      CourseModel courseModel = Mapping.mapToCourseModel(course);
+      Map<String, dynamic> json = await getDetailJson(courseModel.id);
+      courseModel.comments = getComments(json);
+      courseModel.sumFinish = getSumLessonFinish(json);
+      data.add(courseModel);
+    }
 
     return data;
   }
@@ -125,11 +151,16 @@ class CourseNetwork {
     var response = await http.get(url);
 
     Map<String, dynamic> json = jsonDecode(response.body);
+
     dynamic courseJson = json['payload'];
 
-    CourseModel data = Mapping.mapToCourseModel(courseJson);
+    CourseModel course = Mapping.mapToCourseModel(courseJson);
 
-    return data;
+    Map<String, dynamic> json2 = await getDetailJson(course.id);
+    course.comments = getComments(json2);
+    course.sumFinish = getSumLessonFinish(json2);
+
+    return course;
   }
   
   static Future<bool> registerCourse(String token, String courseId) async {
@@ -201,10 +232,62 @@ class CourseNetwork {
       return data;
     }
 
-    list.forEach((course) {
-      data.add(Mapping.mapToCourseModelV2(course));
+    for (dynamic course in list) {
+      CourseModel courseModel = Mapping.mapToCourseModelV2(course);
+      Map<String, dynamic> json = await getDetailJson(courseModel.id);
+      courseModel.videoLink = json["payload"]["promoVidUrl"] == null ? "" : json["payload"]["promoVidUrl"];
+      courseModel.description = json["payload"]["description"] == null ? "" : json["payload"]["description"];
+      courseModel.rates = json["payload"]["ratedNumber"] == null ? 0 : json["payload"]["ratedNumber"];
+      courseModel.comments = getComments(json);
+      courseModel.sumFinish = getSumLessonFinish(json);
+      courseModel.like = await statusLikeCourse(token, courseModel.id);
+      data.add(courseModel);
+    }
+
+    return data;
+  }
+
+  static Future rateCourse(String token, String courseId, double star, String content) async {
+    var response = await http.post(API.RATE_COURSE,
+        headers: {
+          'Authorization': 'Bearer $token'
+        },
+        body: {
+          "courseId": courseId,
+          "formalityPoint": star.toString(),
+          "contentPoint": star.toString(),
+          "presentationPoint": star.toString(),
+          "content": content
+        });
+  }
+
+  static Future<Map<String, dynamic>> getDetailJson(String courseId) async {
+    String url = API.LESSON + "/" + courseId  + "/" + courseId;
+    var response = await http.get(url);
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+
+    return json;
+  }
+
+  static List<CommentModel> getComments(Map<String, dynamic> json) {
+    List<dynamic> list = json['payload']["ratings"]["ratingList"];
+
+    List<CommentModel> data = new List();
+
+    if (list == null) {
+      return data;
+    }
+
+    list.forEach((comment) {
+      data.add(Mapping.mapToCommentModel(comment));
     });
 
     return data;
+  }
+
+  static double getSumLessonFinish(Map<String, dynamic> json) {
+      dynamic sumLessonFinish = json["payload"]["section"][0]["sumLessonFinish"];
+      return sumLessonFinish + 0.0;
   }
 }

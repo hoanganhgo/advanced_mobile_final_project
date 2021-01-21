@@ -3,16 +3,16 @@ import 'package:advanced_mobile_final_project/components/profile/forget-password
 import 'package:advanced_mobile_final_project/components/profile/update-profile.dart';
 import 'package:advanced_mobile_final_project/components/search/search-course.dart';
 import 'package:advanced_mobile_final_project/components/setting/setting.dart';
-import 'package:advanced_mobile_final_project/ui/list-course-type.dart';
-import 'package:advanced_mobile_final_project/ui/list-my-course-vertical.dart';
-import 'package:advanced_mobile_final_project/ui/see-more-recommend.dart';
+import 'package:advanced_mobile_final_project/ui/course/list-course-type.dart';
+import 'package:advanced_mobile_final_project/ui/course/list-my-course-vertical.dart';
+import 'package:advanced_mobile_final_project/ui/course/see-more-recommend.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'components/video-player/course_detail.dart';
 import 'generated/l10n.dart';
 import 'ui/author/author_detail.dart';
-import 'ui/list-course-vertical.dart';
+import 'ui/course/list-course-vertical.dart';
 import 'ui/app_bar.dart';
 import 'components/browser/browser.dart';
 import 'components/download/download.dart';
@@ -84,7 +84,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   var tabs = [Home(), Download(), Browser(), SearchCourse(searchContent: "")];
-  var tabNames = ['Home', 'Download', 'Browser', 'Search'];
+  var tabNames = [S.current.home, S.current.download, S.current.browser, S.current.search];
   var index = 0;
 
   @override

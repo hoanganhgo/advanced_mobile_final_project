@@ -27,7 +27,7 @@ class InputBox extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.black12,
+            color: Colors.grey.shade200,
             height: Constant.BOX_HEIGHT,
             child: TextField(
               obscureText: this.security,

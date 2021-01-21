@@ -1,9 +1,11 @@
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
+
+import '../app_bar.dart';
 
 class AuthorDetail extends StatelessWidget {
   @override
@@ -12,7 +14,7 @@ class AuthorDetail extends StatelessWidget {
     AuthorModel model = ModalRoute.of(context).settings.arguments;
     print(model.name);
     return Scaffold(
-      appBar: AppBarCustom(name: 'Author', avatar: store.avatar),
+      appBar: AppBarCustom(name: S.current.author, avatar: store.avatar),
       body: Center(
         child: Column(
           children: [
@@ -33,7 +35,7 @@ class AuthorDetail extends StatelessWidget {
 
                 },
                 color: Colors.blue,
-                child: Text('FOLLOW'),
+                child: Text(S.current.FOLLOW),
               ),
             ),
             Text('Miko Jeson is my idol',

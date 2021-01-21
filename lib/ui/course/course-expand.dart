@@ -1,14 +1,42 @@
 import 'package:advanced_mobile_final_project/model/course_model.dart';
+import 'package:advanced_mobile_final_project/ui/list-comment.dart';
 import 'package:advanced_mobile_final_project/ui/list-exercise.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 
-import 'list-lesson.dart';
+import '../list-lesson.dart';
 
 class CourseExpand extends StatelessWidget {
   CourseModel model;
   String lessonId;
 
   CourseExpand(this.model, {this.lessonId});
+
+  Widget getContainer(BuildContext context) {
+    if (this.lessonId.isEmpty) {
+      return Container(
+          height: MediaQuery.of(context).copyWith().size.height - 360,
+          child: ListComment(model.comments)
+      );
+    } else {
+      return Container(
+          height: MediaQuery.of(context).copyWith().size.height - 360,
+          child: ListExercise(lessonId)
+      );
+    }
+  }
+
+  Widget getTab() {
+    if (this.lessonId.isEmpty){
+      return Tab(
+        text: S.current.comment,
+      );
+    } else {
+      return Tab(
+        text: S.current.exercise,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +55,12 @@ class CourseExpand extends StatelessWidget {
                 labelColor: Colors.blue,
                 tabs: [
                   Tab(
-                    text: "Description",
+                    text: S.current.description,
                   ),
                   Tab(
-                    text: "Lesson",
+                    text: S.current.lesson,
                   ),
-                  Tab(
-                    text: "Exercise",
-                  ),
+                  getTab()
                 ],
               ),
             ),
@@ -58,10 +84,7 @@ class CourseExpand extends StatelessWidget {
                   height: MediaQuery.of(context).copyWith().size.height - 360,
                   child: ListLesson(model)
               ),
-              Container(
-                  height: MediaQuery.of(context).copyWith().size.height - 360,
-                  child: ListExercise(lessonId)
-              )
+              getContainer(context)
             ],
           ),
         ),

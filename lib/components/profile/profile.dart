@@ -1,8 +1,9 @@
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
+import 'package:advanced_mobile_final_project/ui/app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -12,7 +13,7 @@ class Profile extends StatelessWidget {
     UserModel model = store.user;
 
     return Scaffold(
-      appBar: AppBarCustom(name:'Profile', avatar: store.avatar),
+      appBar: AppBarCustom(name: S.current.profile, avatar: store.avatar),
       body: Center(
         child: Column(
           children: [
@@ -21,7 +22,7 @@ class Profile extends StatelessWidget {
               backgroundImage: NetworkImage(model.avatar)
             ),
             SizedBox(height: 5),
-            Text(model.name == null ? 'Anonymous' : model.name,
+            Text(model.name == null ? S.current.anonymous : model.name,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -33,7 +34,7 @@ class Profile extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Row(
                 children: [
-                  Text('Email: ',
+                  Text(S.current.email + ": ",
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18
@@ -53,7 +54,7 @@ class Profile extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: [
-                    Text('Phone: ',
+                    Text(S.current.phone + ": ",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18
@@ -77,7 +78,7 @@ class Profile extends StatelessWidget {
                 color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
-                  "UPDATE PROFILE",
+                  S.current.UPDATE_PROFILE,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500
@@ -97,7 +98,7 @@ class Profile extends StatelessWidget {
                 color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
-                  "SIGN OUT",
+                  S.current.SIGN_OUT,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500

@@ -1,4 +1,5 @@
 import 'package:advanced_mobile_final_project/model/exercise-model.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class ExerciseWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Exercise: " + this.model.title,
+            Text(S.current.exercise + ": " + this.model.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 softWrap: true,
@@ -29,7 +30,7 @@ class ExerciseWidget extends StatelessWidget {
                     color: Colors.black
                 )
             ),
-            Text("Number of question: " + this.model.numberOfQuestion,
+            Text(S.current.number_question + ": " + this.model.numberOfQuestion,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 softWrap: true

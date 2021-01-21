@@ -1,8 +1,7 @@
 import 'package:advanced_mobile_final_project/components/search/search-all.dart';
 import 'package:advanced_mobile_final_project/components/search/search-author.dart';
-import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 
 import 'search-course.dart';
 
@@ -13,7 +12,6 @@ class SearchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<StoreModel>(context);
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -27,13 +25,13 @@ class SearchResult extends StatelessWidget {
               labelColor: Colors.blue,
               tabs: [
                 Tab(
-                  text: "ALL",
+                  text: S.current.ALL,
                 ),
                 Tab(
-                  text: "COURSES",
+                  text: S.current.COURSES,
                 ),
                 Tab(
-                  text: "AUTHORS",
+                  text: S.current.AUTHORS,
                 ),
               ],
             ),

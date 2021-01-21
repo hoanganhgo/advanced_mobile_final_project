@@ -47,7 +47,6 @@ dev_dependencies:
   imgur: ^1.1.1
   image_picker: ^0.6.7+21
   package_info: ^0.4.0+16
-  social_share: ^2.0.5
   share: ^0.6.5+4
 
 # For information on the generic Dart part of this file, see the
@@ -67,18 +66,6 @@ flutter:
     - assets/images/avatar.jpg
     - assets/images/video.jpg
     - assets/images/e-learning.webp
-    - assets/images/course/java.jpg
-    - assets/images/course/csharp.jpg
-    - assets/images/course/cplusplus.jpg
-    - assets/images/course/flutter.png
-    - assets/images/course/javascript.png
-    - assets/images/course/python.jpg
-    - assets/images/course/react.jpg
-    - assets/images/course/ai.jpg
-    - assets/images/course/android.jpg
-    - assets/images/course/data_science.png
-    - assets/images/course/ios.png
-    - assets/images/course/nodejs.png
     - assets/images/avatar/anonymous.jpg
     - assets/images/avatar/bill_gate.jpg
     - assets/images/avatar/buffett.jpg

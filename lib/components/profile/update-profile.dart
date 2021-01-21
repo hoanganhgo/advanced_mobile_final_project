@@ -26,6 +26,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   bool chooseAvatar = false;
   var nickName = new TextEditingController();
   var phoneNumber = new TextEditingController();
+  double processBar = 0.0;
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -45,7 +46,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   validateInput(BuildContext context) {
     String content = '';
     if (this.nickName.text.isEmpty) {
-      content = "Nick name is empty";
+      content = S.current.name_empty;
     } else if (!Validation.isNumberPhone(this.phoneNumber.text)) {
       content = S.of(context).message_phone_invalid;
     }
@@ -55,16 +56,15 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<StoreModel>(context);
-    UserModel model = store.user;
 
     if (!this.chooseAvatar) {
       this.avatar = NetworkImage(store.user.avatar);
-      this.nickName.text = store.user.name == null ? "Anonymous" : store.user.name;
+      this.nickName.text = store.user.name == null ? S.current.anonymous : store.user.name;
       this.phoneNumber.text = store.user.phone;
     }
 
     return Scaffold(
-      appBar: AppBarCustom(name:'Profile', avatar: NetworkImage(store.user.avatar)),
+      appBar: AppBarCustom(name: S.current.profile, avatar: NetworkImage(store.user.avatar)),
       body: Center(
         child: Column(
           children: [
@@ -77,14 +77,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 onPressed: () async {
                   await this.getImage();
                 },
-                child: Text("Choose avatar"),
+                child: Text(S.current.choose_avatar),
             color: Colors.grey.shade200),
             SizedBox(height: 5),
             Divider(height: 5),
             SizedBox(height: 5),
-            InputBox(title: "NickName", editText: this.nickName),
+            InputBox(title: S.current.nick_name, editText: this.nickName),
             SizedBox(height: 5),
-            InputBox(title: "Phone Number", editText: this.phoneNumber),
+            InputBox(title: S.current.phone, editText: this.phoneNumber),
             SizedBox(height: 10),
             Container(
               width: Constant.BUTTON_WIDTH,
@@ -92,13 +92,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 onPressed: () async {
                   String notify = validateInput(context);
                   if (notify.isNotEmpty) {
-                    AlertDialogBasic(title: "Notify", content: notify, actions: [
+                    AlertDialogBasic(title: S.current.notify, content: notify, actions: [
                       FlatButton(onPressed: () {
                         Navigator.pop(context);
-                      }, child: Text("OK"))
+                      }, child: Text(S.current.btn_ok))
                     ]).show(context);
                     return;
                   }
+
+                  setState(() {
+                    this.processBar = 50.0;
+                  });
 
                   String avatarLink = store.user.avatar;
 
@@ -123,7 +127,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   store.user.name = this.nickName.text;
                   store.user.phone = this.phoneNumber.text;
 
-                  AlertDialogBasic(title: "Notify", content: "Update profile success", actions: [
+                  setState(() {
+                    this.processBar = 0.0;
+                  });
+
+                  AlertDialogBasic(title: S.current.notify, content: S.current.update_profile_success, actions: [
                     FlatButton(
                         onPressed: () {
                           store.avatar = NetworkImage(store.user.avatar);
@@ -131,19 +139,28 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           Navigator.pop(context);
                           Navigator.pushReplacementNamed(context, '/main');
                         },
-                        child: Text("OK"))
+                        child: Text(S.current.btn_ok))
                   ]).show(context);
                 },
-                color: Colors.black87,
+                color: store.primaryColor,
                 textColor: Colors.white,
                 child: Text(
-                  "UPDATE PROFILE",
+                  S.current.UPDATE_PROFILE,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500
                   ),
                 ),
               ),
+            ),
+            Center(
+                child: Container(
+                  height: this.processBar,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                )
             ),
           ],
         ),

@@ -1,10 +1,12 @@
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/constant/list-courses-type.dart';
 import 'package:advanced_mobile_final_project/constant/top-courses-type.dart';
+import 'package:advanced_mobile_final_project/model/comment-model.dart';
 import 'package:advanced_mobile_final_project/model/course_model.dart';
 import 'package:advanced_mobile_final_project/network/course-network.dart';
-import 'package:advanced_mobile_final_project/widget/course-horizontal-widget.dart';
-import 'package:advanced_mobile_final_project/widget/course-vertical-widget.dart';
+import 'package:advanced_mobile_final_project/widget/comment-widget.dart';
+import 'package:advanced_mobile_final_project/widget/course/course-horizontal-widget.dart';
+import 'package:advanced_mobile_final_project/widget/course/course-vertical-widget.dart';
 import 'package:flutter/material.dart';
 
 class CourseService {
@@ -100,5 +102,21 @@ class CourseService {
     List<CourseModel> courses = await CourseNetwork.getFavoriteCourses(token);
 
     return convertToCourseHorizontal(courses);
+  }
+
+  static List<Widget> getListComments(List<CommentModel> comments) {
+
+    List<Widget> result = new List<Container>();
+
+    for (CommentModel comment in comments) {
+      result.add(
+          Container(
+              margin: EdgeInsets.all(Constant.insetCourse),
+              child: CommentWidget(comment)
+          )
+      );
+    }
+
+    return result;
   }
 }

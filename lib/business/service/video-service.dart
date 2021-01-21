@@ -2,7 +2,6 @@ import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/video-model.dart';
 import 'package:advanced_mobile_final_project/widget/video-widget.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'database-service.dart';

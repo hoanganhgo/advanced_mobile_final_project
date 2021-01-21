@@ -1,8 +1,10 @@
 import 'package:advanced_mobile_final_project/business/service/course-service.dart';
-import 'file:///E:/Advanced%20Mobile/advanced_mobile_final_project/lib/ui/app_bar.dart';
 import 'package:advanced_mobile_final_project/model/store_model.dart';
 import 'package:provider/provider.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:flutter/material.dart';
+
+import '../app_bar.dart';
 
 class SeeMoreRecommend extends StatelessWidget{
   String id;
@@ -15,12 +17,20 @@ class SeeMoreRecommend extends StatelessWidget{
     this.id = args['id'];
 
     return Scaffold(
-      appBar: AppBarCustom(name: "Recommend for you", avatar: store.avatar),
+      appBar: AppBarCustom(name: S.current.recommend, avatar: store.avatar),
       body: FutureBuilder<List<Widget>>(
         future: CourseService.getRecommendCoursesMore(id),
         builder: (BuildContext context, AsyncSnapshot<List<Widget>> snapshot) {
           if( snapshot.connectionState == ConnectionState.waiting){
-            return  Center(child: Text('Please wait its loading...'));
+            return  Center(
+                child: Container(
+                  height: 50.0,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                )
+            );
           }else{
             if (snapshot.hasError)
               return Center(child: Text('Error: ${snapshot.error}'));

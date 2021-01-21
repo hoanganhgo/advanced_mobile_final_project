@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 
 class HeaderCourse extends StatelessWidget {
   String title;
@@ -20,7 +21,7 @@ class HeaderCourse extends StatelessWidget {
         ),
         InkWell(
           child: Text(
-            'See all >',
+            S.current.see_all + ' >',
             style: TextStyle(
               color: Colors.black,
               fontSize: Constant.seeAllSize,

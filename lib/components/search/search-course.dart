@@ -1,5 +1,6 @@
 import 'package:advanced_mobile_final_project/business/service/course-service.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 
 class SearchCourse extends StatefulWidget {
   SearchCourse({Key key, this.searchContent}) : super(key: key);
@@ -14,8 +15,8 @@ class _SearchCourseState extends State<SearchCourse> {
   String searchContent;
 
   _SearchCourseState(this.searchContent) {
-    print("_SearchCourseState");
-    _loadData();
+    //print("_SearchCourseState");
+  _loadData();
   }
 
   int page = 0;
@@ -43,7 +44,7 @@ class _SearchCourseState extends State<SearchCourse> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text("Not Found",
+        Text(S.current.not_found,
           style: TextStyle(
               fontSize: fontSize,
               color: Colors.grey

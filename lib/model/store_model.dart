@@ -1,10 +1,7 @@
 import 'package:advanced_mobile_final_project/model/author_model.dart';
-import 'package:advanced_mobile_final_project/model/category_model.dart';
 import 'package:advanced_mobile_final_project/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'course_model.dart';
 
 class StoreModel with ChangeNotifier {
   UserModel user;

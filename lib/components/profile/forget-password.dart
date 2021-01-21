@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:advanced_mobile_final_project/business/service/validation.dart';
 import 'package:advanced_mobile_final_project/constant/api.dart';
 import 'package:advanced_mobile_final_project/generated/l10n.dart';
@@ -52,7 +50,7 @@ class ForgetPassword extends StatelessWidget {
                       'email': this.emailInput.text,
                     });
 
-                    Map<String, dynamic> json = jsonDecode(response.body);
+                    //Map<String, dynamic> json = jsonDecode(response.body);
                     //print(json);
                   },
                   color: store.primaryColor,

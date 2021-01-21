@@ -1,6 +1,7 @@
 import 'package:advanced_mobile_final_project/constant/constant.dart';
 import 'package:advanced_mobile_final_project/model/author_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:advanced_mobile_final_project/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class AuthorVertical extends StatelessWidget {
@@ -32,7 +33,7 @@ class AuthorVertical extends StatelessWidget {
                       fontWeight: FontWeight.w500
                   ),
                 ),
-                Text(this.model.numberOfCourses.toString() + ' courses',
+                Text(this.model.numberOfCourses.toString() + " " + S.current.courses,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300
